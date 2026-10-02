@@ -2,14 +2,15 @@
 
 :root {
   /* Brand Palette */
-  --color-primary: #1e3a5f; /* Deep Navy */
-  --color-primary-light: #2c5282;
-  --color-secondary: #2f4f4f; /* Forest Green */
-  --color-accent: #c5a059; /* Muted Gold */
-  --color-accent-hover: #b08d4b;
+  --color-primary: #0a1f14; /* Deep Forest Green from Flyer */
+  --color-primary-light: #163625;
+  --color-secondary: #0a1f14; /* Kept same as primary for consistency */
+  --color-accent: #d4af37; /* Metallic Gold */
+  --color-accent-hover: #e5c158;
+  --color-accent-dark: #8b6914;
   --color-surface: #fdfbf7; /* Warm Ivory */
   --color-background: #ffffff;
-  --color-muted: #8fbc8f; /* Soft Sage */
+  --color-muted: #e6dfc8; /* Soft Gold/Beige */
   --color-text: #1a202c;
   --color-text-light: #4a5568;
   --color-border: #e2e8f0;

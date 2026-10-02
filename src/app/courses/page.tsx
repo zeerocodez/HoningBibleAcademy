@@ -16,16 +16,21 @@ export default function CoursesPage() {
         <div className={styles.courseGrid}>
           {courses.map(course => (
             <div key={course.slug} className={styles.courseCard}>
-              <div className={styles.cardHeader}>
-                <h2>{course.title}</h2>
-                <span className={styles.price}>{course.price}</span>
+              <div className={styles.cardImage}>
+                <img src={course.image} alt={course.title} />
               </div>
-              <p className={styles.description}>{course.description}</p>
-              <div className={styles.cardFooter}>
-                <span className={styles.duration}>{course.duration}</span>
-                <Link href={`/courses/${course.slug}`} className="button button-primary">
-                  View details
-                </Link>
+              <div className={styles.cardContent}>
+                <div className={styles.cardHeader}>
+                  <h2>{course.title}</h2>
+                  <span className={styles.price}>{course.price}</span>
+                </div>
+                <p className={styles.description}>{course.description}</p>
+                <div className={styles.cardFooter}>
+                  <span className={styles.duration}>{course.duration}</span>
+                  <Link href={`/courses/${course.slug}`} className="button button-primary">
+                    View details
+                  </Link>
+                </div>
               </div>
             </div>
           ))}

@@ -5,8 +5,8 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.headerInner}`}>
-        <Link href="/" className={styles.logo}>
-          Honing Bible Academy
+        <Link href="/" className={styles.logoContainer}>
+          <img src="/logo.jpeg" alt="Honing Bible Academy Logo" className={styles.logoImage} />
         </Link>
         <nav className={styles.nav}>
           <Link href="/about" className={styles.link}>About</Link>

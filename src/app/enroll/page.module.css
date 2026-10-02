@@ -1,0 +1,132 @@
+.enrollContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.subtitle {
+  color: var(--color-text-light);
+  margin-bottom: 4rem;
+  font-size: 1.1rem;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+}
+
+@media (min-width: 768px) {
+  .layout {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+.formSection h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup label {
+  font-weight: 500;
+  color: var(--color-text);
+  font-size: 0.875rem;
+}
+
+.formGroup input {
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.helpText {
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+}
+
+.paymentNotice {
+  background-color: rgba(226, 232, 240, 0.5);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--color-primary);
+}
+
+.paymentNotice p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+}
+
+.submitButton {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
+.summaryCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  position: sticky;
+  top: 100px;
+}
+
+.summaryCard h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 1rem;
+}
+
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  color: var(--color-text-light);
+}
+
+.summaryTotal {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--color-border);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+
+.includesList {
+  margin-top: 2rem;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.includesList li {
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+}

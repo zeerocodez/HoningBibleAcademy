@@ -1,0 +1,167 @@
+.lessonLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .lessonLayout {
+    grid-template-columns: 1fr 350px;
+  }
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.backLink {
+  color: var(--color-text-light);
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.lessonTitle {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.videoContainer {
+  margin-bottom: 2rem;
+}
+
+.videoPlaceholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-color: var(--color-secondary);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  gap: 1rem;
+}
+
+.playIcon {
+  font-size: 4rem;
+  opacity: 0.8;
+}
+
+.lessonControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 2rem;
+}
+
+.lessonContent {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.lessonContent h2, .lessonContent h3 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.lessonContent ul {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.lessonContent li {
+  margin-bottom: 0.5rem;
+}
+
+/* Sidebar Styles */
+.lessonSidebar {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  align-self: start;
+}
+
+.lessonSidebar h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.5rem;
+}
+
+.moduleList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.moduleItem, .moduleItemActive {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.moduleItem:hover {
+  background-color: rgba(0,0,0,0.02);
+}
+
+.moduleItemActive {
+  background-color: rgba(197, 160, 89, 0.1); /* Gold tint */
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.moduleIcon {
+  background-color: var(--color-secondary);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+.moduleIconCircle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+}
+
+.resources {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.resourceLink {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0.75rem;
+  color: var(--color-text-light);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  font-family: var(--font-body);
+}
+
+.resourceLink:hover {
+  background-color: var(--color-background);
+  color: var(--color-primary);
+}
