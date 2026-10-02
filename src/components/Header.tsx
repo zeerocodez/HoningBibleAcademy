@@ -9,6 +9,7 @@ export default function Header() {
           <img src="/logo.jpeg" alt="Honing Bible Academy Logo" className={styles.logoImage} />
         </Link>
         <nav className={styles.nav}>
+          <Link href="/" className={styles.link}>Home</Link>
           <Link href="/about" className={styles.link}>About</Link>
           <Link href="/courses" className={styles.link}>Courses</Link>
           <Link href="/faq" className={styles.link}>FAQ</Link>

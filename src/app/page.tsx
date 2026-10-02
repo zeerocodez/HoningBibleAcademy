@@ -37,13 +37,17 @@ export default function Home() {
               </div>
             </div>
             <div className={styles.heroImageWrapper}>
-              <div className={styles.videoPlaceholder}>
-                <div className={styles.playButton}>
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-                <span>Watch the Introduction</span>
+              <div className={styles.videoContainer}>
+                <iframe 
+                  width="100%" 
+                  height="100%" 
+                  src="https://www.youtube.com/embed/6KuPjo1diLg" 
+                  title="Honing Bible Academy Introduction" 
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                  className={styles.iframe}
+                ></iframe>
               </div>
               {/* Decorative elements */}
               <div className={styles.decorativeShape1}></div>
