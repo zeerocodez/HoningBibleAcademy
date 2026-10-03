@@ -1,8 +1,46 @@
+'use client';
+
+import { useState } from 'react';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Link from 'next/link';
 import styles from './page.module.css';
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get('email');
+    const password = formData.get('password');
+
+    try {
+      const res = await signIn('credentials', {
+        email,
+        password,
+        redirect: false
+      });
+
+      if (res?.error) {
+        setError('Invalid email or password');
+      } else {
+        router.push('/learn');
+        router.refresh();
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -14,7 +52,9 @@ export default function LoginPage() {
               Welcome back to Honing Bible Academy.
             </p>
 
-            <form className={styles.form}>
+            {error && <p style={{ color: 'red', textAlign: 'center', marginBottom: '1rem' }}>{error}</p>}
+
+            <form className={styles.form} onSubmit={handleSubmit}>
               <div className={styles.formGroup}>
                 <label htmlFor="email">Email Address</label>
                 <input type="email" id="email" name="email" required />
@@ -28,9 +68,9 @@ export default function LoginPage() {
                 <input type="password" id="password" name="password" required />
               </div>
 
-              <Link href="/learn" className={`button button-primary ${styles.submitButton}`}>
-                Sign In
-              </Link>
+              <button type="submit" disabled={loading} className={`button button-primary ${styles.submitButton}`}>
+                {loading ? 'Signing In...' : 'Sign In'}
+              </button>
             </form>
 
             <div className={styles.footer}>

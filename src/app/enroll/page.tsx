@@ -1,7 +1,46 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import styles from './page.module.css';
 
 export default function EnrollPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const password = formData.get('password');
+
+    try {
+      const res = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password })
+      });
+
+      if (res.ok) {
+        // Redirect to login after successful registration
+        router.push('/login?registered=true');
+      } else {
+        const text = await res.text();
+        setError(text || 'Registration failed');
+      }
+    } catch (err) {
+      setError('An error occurred during registration.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -16,7 +55,8 @@ export default function EnrollPage() {
             {/* Enrollment Form */}
             <div className={styles.formSection}>
               <h2>Your Details</h2>
-              <form className={styles.form}>
+              {error && <p style={{ color: 'red', marginBottom: '1rem' }}>{error}</p>}
+              <form className={styles.form} onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
                   <label htmlFor="name">Full Name</label>
                   <input type="text" id="name" name="name" required />
@@ -29,19 +69,18 @@ export default function EnrollPage() {
                 
                 <div className={styles.formGroup}>
                   <label htmlFor="password">Create a Password</label>
-                  <input type="password" id="password" name="password" required />
+                  <input type="password" id="password" name="password" required minLength={8} />
                   <span className={styles.helpText}>Minimum 8 characters.</span>
                 </div>
 
                 <div className={styles.paymentNotice}>
                   <p>
-                    <em>Payment integration will be configured once the provider credentials are supplied. 
-                    This form is currently a mockup.</em>
+                    <em>Registration is free during the beta phase.</em>
                   </p>
                 </div>
 
-                <button type="button" className={`button button-primary ${styles.submitButton}`}>
-                  Proceed to Payment
+                <button type="submit" disabled={loading} className={`button button-primary ${styles.submitButton}`}>
+                  {loading ? 'Processing...' : 'Complete Enrollment'}
                 </button>
               </form>
             </div>

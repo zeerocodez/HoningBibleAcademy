@@ -1,0 +1,64 @@
+.adminLayout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f7f6;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: var(--color-primary);
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  padding: 2rem;
+  font-size: 1.5rem;
+  font-family: var(--font-heading);
+  font-weight: bold;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  color: var(--color-accent);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+.link {
+  padding: 1rem 2rem;
+  color: #e2e8f0;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.link:hover {
+  background-color: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.mainContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  height: 70px;
+  background-color: white;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 2rem;
+}
+
+.userMenu {
+  font-weight: bold;
+}
+
+.content {
+  padding: 2rem;
+  flex-grow: 1;
+}
