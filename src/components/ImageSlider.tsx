@@ -1,12 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import styles from './ImageSlider.module.css';
 
 const images = [
-  "https://images.unsplash.com/photo-1525926476822-cf8f972dfa66?q=80&w=1200&auto=format&fit=crop", // youth studying
-  "https://images.unsplash.com/photo-1526657782461-9fe13401a671?q=80&w=1200&auto=format&fit=crop", // diverse group
-  "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=1200&auto=format&fit=crop", // vibrant discussion
+  "https://images.unsplash.com/photo-1571260899304-425dea5cfd04?w=1200&q=80", // African students studying
+  "https://images.unsplash.com/photo-1531123414708-1e6d6c068f37?w=1200&q=80", // African youth learning
+  "https://images.unsplash.com/photo-1544717305-2782549b5136?w=1200&q=80", // African student smiling
+  "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=1200&q=80"  // Group of African students
 ];
 
 export default function ImageSlider() {
@@ -25,8 +27,16 @@ export default function ImageSlider() {
         <div
           key={img}
           className={`${styles.slide} ${index === currentIndex ? styles.active : ''}`}
-          style={{ backgroundImage: `url(${img})` }}
-        />
+        >
+          <Image 
+            src={img} 
+            alt="Students at Honing Bible Academy" 
+            fill 
+            style={{ objectFit: 'cover' }} 
+            priority={index === 0} 
+            sizes="(max-width: 768px) 100vw, 1200px"
+          />
+        </div>
       ))}
       <div className={styles.indicators}>
         {images.map((_, idx) => (
