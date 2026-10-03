@@ -3,7 +3,7 @@
 import styles from './WhatsAppWidget.module.css';
 
 export default function WhatsAppWidget() {
-  const phoneNumber = "2348000000000"; // Replace with actual Nigerian phone number
+  const phoneNumber = "2347064941557"; // Provided by user
   const message = encodeURIComponent("Hello! I'm interested in learning more about Honing Bible Academy.");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
