@@ -3,7 +3,7 @@ import styles from './page.module.css';
 import Link from 'next/link';
 import { courses } from '@/lib/courses';
 import AnimatedSection from '@/components/AnimatedSection';
-
+import ImageSlider from '@/components/ImageSlider';
 
 export default function Home() {
   const mainCourse = courses[0]; // The Biblical Narrative
@@ -54,6 +54,12 @@ export default function Home() {
               <div className={styles.decorativeShape2}></div>
             </div>
           </div>
+        </section>
+
+        <section style={{ padding: '2rem 1rem', maxWidth: '1200px', margin: '0 auto' }}>
+          <AnimatedSection delay={200}>
+            <ImageSlider />
+          </AnimatedSection>
         </section>
 
         {/* Benefits Section */}
