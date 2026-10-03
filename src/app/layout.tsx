@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: 'Honing Bible Academy',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?w=1200&q=80', // Beautiful open Bible for link preview
+        url: 'https://honingbibleacademy.com/rod-long-DRgrzQQsJDA-unsplash.jpg', // Beautiful image for link preview
         width: 1200,
         height: 630,
         alt: 'Honing Bible Academy',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Honing Bible Academy',
     description: 'Equipping for Sound Biblical Insight and Effective Ministry.',
-    images: ['https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?w=1200&q=80'],
+    images: ['https://honingbibleacademy.com/rod-long-DRgrzQQsJDA-unsplash.jpg'],
   },
 };
 

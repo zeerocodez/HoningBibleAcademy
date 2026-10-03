@@ -7,19 +7,19 @@ const testimonials = [
     name: "Emmanuel O.",
     role: "Diploma Student",
     content: "The Biblical narrative course completely shifted my perspective. The teachings are deep yet so accessible.",
-    image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=100&q=80"
+    image: "/tobi-oshinnaike-ajWHOi2r2uA-unsplash.jpg"
   },
   {
     name: "Sarah M.",
     role: "Youth Ministry Lead",
     content: "HBA equipped me with practical skills I use every Sunday. The digital library is an absolute game changer.",
-    image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&q=80"
+    image: "/gift-habeshaw-1nk55s0BabU-unsplash.jpg"
   },
   {
     name: "David K.",
     role: "Advanced Certificate",
     content: "Affordable, structured, and profoundly insightful. I highly recommend Honing Bible Academy to any believer.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80"
+    image: "/patrick-otim-Td7N1tsJoC4-unsplash.jpg"
   }
 ];
 

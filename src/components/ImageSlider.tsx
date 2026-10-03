@@ -5,10 +5,10 @@ import Image from 'next/image';
 import styles from './ImageSlider.module.css';
 
 const images = [
-  "https://images.unsplash.com/photo-1571260899304-425dea5cfd04?w=1200&q=80", // African students studying
-  "https://images.unsplash.com/photo-1531123414708-1e6d6c068f37?w=1200&q=80", // African youth learning
-  "https://images.unsplash.com/photo-1544717305-2782549b5136?w=1200&q=80", // African student smiling
-  "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=1200&q=80"  // Group of African students
+  "/iwaria-inc-SESt1VL2D-w-unsplash.jpg", 
+  "/maiye-jeremiah-1eXBWRwun34-unsplash.jpg", 
+  "/k-studios-eyA8kdL_10E-unsplash.jpg", 
+  "/michael-odida-ejG7c5cHlHo-unsplash.jpg"
 ];
 
 export default function ImageSlider() {
