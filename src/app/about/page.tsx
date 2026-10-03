@@ -45,15 +45,22 @@ export default function About() {
 
         <section className={styles.section}>
           <h2>About the Founder/President</h2>
-          <p>
-            Dr. Clifford Stephen is a bibliologist, ethnographer and a pragmatic teacher of God’s Word. He earned a Bachelor’s Degree in Religious and Cultural Studies from University of Uyo. Motivated by a continuing commitment to biblical scholarship, he obtained a Master’s Degree in Biblical Studies from University of Calabar. He further advanced his academic formation by earning a Doctor of Philosophy (PhD) in Biblical Studies from University of Port Harcourt and later completed a Doctor of Divinity (D.Div.) from International Bible Academy USA.
-          </p>
-          <p>
-            In addition to his theological education, Dr. Stephen has further strengthened his professional and ministerial competence through certifications in Biblical Languages, Christian Counseling, Cognitive Behavioural Therapy (CBT), Project Implementation, Human Resource Management, etc.
-          </p>
-          <p>
-            Dr. Stephen is devoted to advancing sound biblical teaching, equipping leaders, and promoting the faithful interpretation and practical application of God’s Word for the transformation of lives and ministries.
-          </p>
+          <div className={styles.founderGrid}>
+            <div className={styles.founderImageWrapper}>
+              <img src="/founder.jpg" alt="Dr. Clifford Sunday Stephen" className={styles.founderImage} />
+            </div>
+            <div className={styles.founderText}>
+              <p>
+                Dr. Clifford Stephen is a bibliologist, ethnographer and a pragmatic teacher of God’s Word. He earned a Bachelor’s Degree in Religious and Cultural Studies from University of Uyo. Motivated by a continuing commitment to biblical scholarship, he obtained a Master’s Degree in Biblical Studies from University of Calabar. He further advanced his academic formation by earning a Doctor of Philosophy (PhD) in Biblical Studies from University of Port Harcourt and later completed a Doctor of Divinity (D.Div.) from International Bible Academy USA.
+              </p>
+              <p>
+                In addition to his theological education, Dr. Stephen has further strengthened his professional and ministerial competence through certifications in Biblical Languages, Christian Counseling, Cognitive Behavioural Therapy (CBT), Project Implementation, Human Resource Management, etc.
+              </p>
+              <p>
+                Dr. Stephen is devoted to advancing sound biblical teaching, equipping leaders, and promoting the faithful interpretation and practical application of God’s Word for the transformation of lives and ministries.
+              </p>
+            </div>
+          </div>
         </section>
       </div>
     </main>
