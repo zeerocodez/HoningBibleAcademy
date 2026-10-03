@@ -23,11 +23,14 @@ export async function POST(request: Request) {
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
+    const isSuperAdmin = email.toLowerCase() === 'zeerocodes@gmail.com';
+
     const user = await prisma.user.create({
       data: {
         name,
         email,
-        password: hashedPassword
+        password: hashedPassword,
+        role: isSuperAdmin ? 'ADMIN' : 'STUDENT'
       }
     });
 
