@@ -6,11 +6,13 @@ import styles from './AnimatedSection.module.css';
 export default function AnimatedSection({ 
   children, 
   className = '',
-  delay = 0 
+  delay = 0,
+  id
 }: { 
   children: React.ReactNode, 
   className?: string,
-  delay?: number 
+  delay?: number,
+  id?: string
 }) {
   const [isVisible, setIsVisible] = useState(false);
   const domRef = useRef<HTMLDivElement>(null);
@@ -37,6 +39,7 @@ export default function AnimatedSection({
 
   return (
     <div
+      id={id}
       ref={domRef}
       className={`${styles.fadeInUp} ${isVisible ? styles.visible : ''} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
