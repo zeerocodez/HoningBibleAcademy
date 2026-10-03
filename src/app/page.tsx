@@ -2,6 +2,8 @@ import Header from '@/components/Header';
 import styles from './page.module.css';
 import Link from 'next/link';
 import { courses } from '@/lib/courses';
+import AnimatedSection from '@/components/AnimatedSection';
+
 
 export default function Home() {
   const mainCourse = courses[0]; // The Biblical Narrative
@@ -55,7 +57,7 @@ export default function Home() {
         </section>
 
         {/* Benefits Section */}
-        <section className={`section ${styles.benefits}`}>
+        <AnimatedSection className={`section ${styles.benefits}`}>
           <div className="container">
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>A Better Way to Study the Bible</h2>
@@ -82,10 +84,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
         {/* The Curriculum Overview */}
-        <section id="curriculum" className={`section ${styles.curriculum}`}>
+        <AnimatedSection id="curriculum" className={`section ${styles.curriculum}`}>
           <div className="container">
             <div className={styles.curriculumLayout}>
               <div className={styles.curriculumText}>
@@ -126,22 +128,30 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
         {/* About Section */}
-        <section className={`section ${styles.about}`}>
+        <AnimatedSection className={`section ${styles.about}`}>
           <div className="container">
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>About Honing Bible Academy</h2>
-              <p className={styles.sectionSubtitle}>
-                Honing Bible Academy (HBA) is a Christian educational and biblical training institution committed to equipping believers, ministers, scholars, and Christian leaders with sound biblical insight, effective ministry skills, leadership development and scholarly competence.
-              </p>
+            <div className={styles.aboutGrid}>
+              <div className={styles.aboutText}>
+                <div className={styles.sectionHeader} style={{ margin: '0 0 2rem 0', textAlign: 'left' }}>
+                  <h2 className={styles.sectionTitle}>About Honing Bible Academy</h2>
+                  <p className={styles.sectionSubtitle}>
+                    Honing Bible Academy (HBA) is a Christian educational and biblical training institution committed to equipping believers, ministers, scholars, and Christian leaders with sound biblical insight, effective ministry skills, leadership development and scholarly competence.
+                  </p>
+                </div>
+                <Link href="/about" className="button button-primary">Read Our Story</Link>
+              </div>
+              <div className={styles.aboutImageWrapper}>
+                <img src="https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?auto=format&fit=crop&q=80&w=1200" alt="Bible Study" className={styles.aboutImage} />
+              </div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
         {/* Visual Journey */}
-        <section className={`section ${styles.journey}`}>
+        <AnimatedSection className={`section ${styles.journey}`}>
           <div className="container">
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>Your Journey With Us</h2>
@@ -166,10 +176,10 @@ export default function Home() {
               <div className={styles.journeyStep}>9. HBA ALUMNI</div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
         {/* Scholarship without borders */}
-        <section className={`section ${styles.borders}`}>
+        <AnimatedSection className={`section ${styles.borders}`}>
           <div className="container">
             <div className={styles.bordersContent}>
               <h2 className={styles.bordersTitle}>Scholarship Without Borders</h2>
@@ -185,10 +195,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
         {/* Why Trust HBA */}
-        <section className={`section ${styles.trust}`}>
+        <AnimatedSection className={`section ${styles.trust}`}>
           <div className="container">
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>Why Students Trust HBA</h2>
@@ -203,10 +213,10 @@ export default function Home() {
               <div className={styles.trustItem}>Student Support</div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
         {/* Course Options / Pricing */}
-        <section className={`section ${styles.pricing}`}>
+        <AnimatedSection className={`section ${styles.pricing}`}>
           <div className="container">
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>Start Your Journey</h2>
@@ -237,7 +247,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
       </main>
   );
 }
