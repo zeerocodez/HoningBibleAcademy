@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { courses } from '@/lib/courses';
 import AnimatedSection from '@/components/AnimatedSection';
 import ImageSlider from '@/components/ImageSlider';
+import Testimonials from '@/components/Testimonials';
+
 
 export default function Home() {
   const mainCourse = courses[0]; // The Biblical Narrative
@@ -201,6 +203,11 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </AnimatedSection>
+
+        {/* Testimonials */}
+        <AnimatedSection>
+          <Testimonials />
         </AnimatedSection>
 
         {/* Why Trust HBA */}
