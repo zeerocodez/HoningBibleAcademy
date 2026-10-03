@@ -10,11 +10,11 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@auth/prisma-adapter": "^2.11.3",
-    "@prisma/client": "^7.10.0",
-    "bcryptjs": "^3.0.3",
+    "@auth/prisma-adapter": "^1.5.0",
+    "@prisma/client": "^5.10.0",
+    "bcryptjs": "^2.4.3",
     "next": "16.3.8",
-    "next-auth": "^4.24.15",
+    "next-auth": "^4.24.5",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
@@ -25,7 +25,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.8",
-    "prisma": "^7.10.0",
+    "prisma": "^5.10.0",
     "typescript": "^5"
   }
 }
