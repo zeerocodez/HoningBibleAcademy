@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import Header from '@/components/Header';
 import Link from 'next/link';
 import styles from './page.module.css';
 
@@ -43,7 +42,6 @@ export default function LoginPage() {
 
   return (
     <>
-      <Header />
       <main className="container section">
         <div className={styles.loginContainer}>
           <div className={styles.loginCard}>

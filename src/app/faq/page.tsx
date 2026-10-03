@@ -1,4 +1,3 @@
-import Header from '@/components/Header';
 import styles from './page.module.css';
 import Link from 'next/link';
 
@@ -24,7 +23,6 @@ export default function FAQPage() {
 
   return (
     <>
-      <Header />
       <main className="container section">
         <div className={styles.faqContainer}>
           <h1 className="text-center">Frequently Asked Questions</h1>

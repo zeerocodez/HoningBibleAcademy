@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Header from '@/components/Header';
 import styles from './page.module.css';
 
 export default function EnrollPage() {
@@ -43,7 +42,6 @@ export default function EnrollPage() {
 
   return (
     <>
-      <Header />
       <main className="container section">
         <div className={styles.enrollContainer}>
           <h1 className="text-center">Enroll in Honing Bible Academy</h1>

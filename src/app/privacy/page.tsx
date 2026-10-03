@@ -1,9 +1,7 @@
-import Header from '@/components/Header';
 
 export default function PrivacyPage() {
   return (
     <>
-      <Header />
       <main className="container section" style={{ maxWidth: '800px', margin: '0 auto' }}>
         <h1 style={{ marginBottom: '2rem' }}>Privacy Policy</h1>
         <div style={{ color: 'var(--color-text-light)', lineHeight: '1.6' }}>
