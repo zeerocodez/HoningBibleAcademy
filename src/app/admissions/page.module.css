@@ -1,0 +1,65 @@
+.main {
+  padding: 8rem 0 4rem 0;
+  min-height: 100vh;
+  background-color: var(--color-background);
+}
+
+.pageTitle {
+  font-size: 3rem;
+  color: var(--color-primary);
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.stepsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.step {
+  background-color: var(--color-surface);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-accent);
+}
+
+.stepNum {
+  background-color: var(--color-accent);
+  color: white;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0 auto 1.5rem auto;
+}
+
+.step h3 {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.step p {
+  color: var(--color-text-light);
+}
+
+.ctaContainer {
+  text-align: center;
+  margin-top: 4rem;
+}

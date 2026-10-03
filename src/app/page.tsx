@@ -7,8 +7,6 @@ export default function Home() {
   const mainCourse = courses[0]; // The Biblical Narrative
 
   return (
-    <>
-      <Header />
       <main className={styles.main}>
         {/* Hero Section */}
         <section className={styles.hero}>
@@ -17,7 +15,7 @@ export default function Home() {
               <span className={styles.eyebrow}>World-Class Theological Education</span>
               <h1 className={styles.title}>Grow in confidence. <br/>Go deeper in Scripture.</h1>
               <p className={styles.subtitle}>
-                Discover the unified story of the Bible. Honing Bible Academy provides clear, structured teaching to help you interpret Scripture thoughtfully and apply it faithfully to your everyday life.
+                Honing Bible Academy equips for Sound Biblical Insight, Effective Ministry, Leadership and Scholarship.
               </p>
               <div className={styles.heroActions}>
                 <Link href="/enroll" className={`button button-primary ${styles.ctaPrimary}`}>
@@ -130,6 +128,83 @@ export default function Home() {
           </div>
         </section>
 
+        {/* About Section */}
+        <section className={`section ${styles.about}`}>
+          <div className="container">
+            <div className={styles.sectionHeader}>
+              <h2 className={styles.sectionTitle}>About Honing Bible Academy</h2>
+              <p className={styles.sectionSubtitle}>
+                Honing Bible Academy (HBA) is a Christian educational and biblical training institution committed to equipping believers, ministers, scholars, and Christian leaders with sound biblical insight, effective ministry skills, leadership development and scholarly competence.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Visual Journey */}
+        <section className={`section ${styles.journey}`}>
+          <div className="container">
+            <div className={styles.sectionHeader}>
+              <h2 className={styles.sectionTitle}>Your Journey With Us</h2>
+            </div>
+            <div className={styles.journeyFlow}>
+              <div className={styles.journeyStep}>1. DISCOVER</div>
+              <div className={styles.journeyArrow}>↓</div>
+              <div className={styles.journeyStep}>2. APPLY</div>
+              <div className={styles.journeyArrow}>↓</div>
+              <div className={styles.journeyStep}>3. ADMISSION</div>
+              <div className={styles.journeyArrow}>↓</div>
+              <div className={styles.journeyStep}>4. LEARN</div>
+              <div className={styles.journeyArrow}>↓</div>
+              <div className={styles.journeyStep}>5. ASSIGNMENTS</div>
+              <div className={styles.journeyArrow}>↓</div>
+              <div className={styles.journeyStep}>6. EXAMINATION</div>
+              <div className={styles.journeyArrow}>↓</div>
+              <div className={styles.journeyStep}>7. ASSESSMENT</div>
+              <div className={styles.journeyArrow}>↓</div>
+              <div className={styles.journeyStep}>8. CERTIFICATION</div>
+              <div className={styles.journeyArrow}>↓</div>
+              <div className={styles.journeyStep}>9. HBA ALUMNI</div>
+            </div>
+          </div>
+        </section>
+
+        {/* Scholarship without borders */}
+        <section className={`section ${styles.borders}`}>
+          <div className="container">
+            <div className={styles.bordersContent}>
+              <h2 className={styles.bordersTitle}>Scholarship Without Borders</h2>
+              <p className={styles.bordersSubtitle}>Biblical education without geographical boundaries.</p>
+              <div className={styles.countries}>
+                <span>🇳🇬 Nigeria</span>
+                <span>🇬🇭 Ghana</span>
+                <span>🇿🇦 South Africa</span>
+                <span>🇬🇧 United Kingdom</span>
+                <span>🇺🇸 United States</span>
+                <span>🇨🇦 Canada</span>
+                <span>and other countries.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Trust HBA */}
+        <section className={`section ${styles.trust}`}>
+          <div className="container">
+            <div className={styles.sectionHeader}>
+              <h2 className={styles.sectionTitle}>Why Students Trust HBA</h2>
+            </div>
+            <div className={styles.trustGrid}>
+              <div className={styles.trustItem}>Qualified Faculty</div>
+              <div className={styles.trustItem}>Structured Programmes</div>
+              <div className={styles.trustItem}>Flexible Learning</div>
+              <div className={styles.trustItem}>Biblical Scholarship</div>
+              <div className={styles.trustItem}>Practical Ministry Training</div>
+              <div className={styles.trustItem}>Leadership Development</div>
+              <div className={styles.trustItem}>Student Support</div>
+            </div>
+          </div>
+        </section>
+
         {/* Course Options / Pricing */}
         <section className={`section ${styles.pricing}`}>
           <div className="container">
@@ -164,6 +239,5 @@ export default function Home() {
           </div>
         </section>
       </main>
-    </>
   );
 }
