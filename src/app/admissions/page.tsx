@@ -1,11 +1,13 @@
+import PageHero from '@/components/PageHero';
 import styles from './page.module.css';
 import Link from 'next/link';
 
 export default function Admissions() {
   return (
-    <main className={styles.main}>
-      <div className="container">
-        <h1 className={styles.pageTitle}>Admissions System</h1>
+    <>
+      <PageHero title="Admissions System" imageSrc="/rod-long-DRgrzQQsJDA-unsplash.jpg" />
+      <main className={styles.main}>
+        <div className="container" style={{ marginTop: '2rem' }}>
         
         <div className={styles.stepsContainer}>
           <div className={styles.step}>
@@ -50,5 +52,6 @@ export default function Admissions() {
         </div>
       </div>
     </main>
+    </>
   );
 }

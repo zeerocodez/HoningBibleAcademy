@@ -1,10 +1,12 @@
+import PageHero from '@/components/PageHero';
 import styles from './page.module.css';
 
 export default function Events() {
   return (
-    <main className={styles.main}>
-      <div className="container">
-        <h1 className={styles.pageTitle}>HBA Events</h1>
+    <>
+      <PageHero title="HBA Events" imageSrc="/gift-habeshaw-1nk55s0BabU-unsplash.jpg" />
+      <main className={styles.main}>
+        <div className="container" style={{ marginTop: '2rem' }}>
         
         <div className={styles.eventsGrid}>
           <div className={styles.eventCard}>
@@ -30,5 +32,6 @@ export default function Events() {
         </div>
       </div>
     </main>
+    </>
   );
 }

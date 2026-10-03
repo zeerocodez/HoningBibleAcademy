@@ -1,14 +1,13 @@
-import Header from '@/components/Header';
+import PageHero from '@/components/PageHero';
 import styles from './page.module.css';
 
 export default function ContactPage() {
   return (
     <>
-      <Header />
+      <PageHero title="Contact Us" imageSrc="/aaron-burden-TNlHf4m4gpI-unsplash.jpg" />
       <main className="container section">
         <div className={styles.contactContainer}>
           <div className={styles.header}>
-            <h1>Contact Us</h1>
             <p className={styles.subtitle}>
               Have a question about a course or need technical support? We'd love to hear from you.
             </p>

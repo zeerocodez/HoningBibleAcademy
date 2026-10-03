@@ -1,10 +1,12 @@
+import PageHero from '@/components/PageHero';
 import styles from './page.module.css';
 
 export default function About() {
   return (
-    <main className={styles.main}>
-      <div className="container">
-        <h1 className={styles.pageTitle}>About Honing Bible Academy</h1>
+    <>
+      <PageHero title="About Honing Bible Academy" imageSrc="/kojo-kwarteng-KUzlAah2dog-unsplash.jpg" />
+      <main className={styles.main}>
+        <div className="container" style={{ marginTop: '2rem' }}>
         
         <section className={styles.section}>
           <h2>Vision Statement</h2>
@@ -64,5 +66,6 @@ export default function About() {
         </section>
       </div>
     </main>
+    </>
   );
 }

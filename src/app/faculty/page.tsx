@@ -1,10 +1,12 @@
+import PageHero from '@/components/PageHero';
 import styles from './page.module.css';
 
 export default function Faculty() {
   return (
-    <main className={styles.main}>
-      <div className="container">
-        <h1 className={styles.pageTitle}>HBA Faculty</h1>
+    <>
+      <PageHero title="HBA Faculty" imageSrc="/k-studios-eyA8kdL_10E-unsplash.jpg" />
+      <main className={styles.main}>
+        <div className="container" style={{ marginTop: '2rem' }}>
         
         <div className={styles.facultyGrid}>
           <div className={styles.facultyCard}>
@@ -40,5 +42,6 @@ export default function Faculty() {
         </div>
       </div>
     </main>
+    </>
   );
 }

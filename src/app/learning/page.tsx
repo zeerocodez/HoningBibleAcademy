@@ -1,10 +1,12 @@
+import PageHero from '@/components/PageHero';
 import styles from './page.module.css';
 
 export default function Learning() {
   return (
-    <main className={styles.main}>
-      <div className="container">
-        <h1 className={styles.pageTitle}>HBA Virtual Classroom & Learning</h1>
+    <>
+      <PageHero title="HBA Virtual Classroom & Learning" imageSrc="/lucas-law-ecELcxmJTk4-unsplash.jpg" />
+      <main className={styles.main}>
+        <div className="container" style={{ marginTop: '2rem' }}>
         
         <section className={styles.section}>
           <h2>The Virtual Classroom Interface</h2>
@@ -39,5 +41,6 @@ export default function Learning() {
         </section>
       </div>
     </main>
+    </>
   );
 }
