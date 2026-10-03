@@ -1,5 +1,5 @@
+import Image from 'next/image';
 import styles from './page.module.css';
-
 export default function Programmes() {
   return (
     <main className={styles.main}>
@@ -89,15 +89,30 @@ export default function Programmes() {
           <h2>Higher Degree Programmes</h2>
           <div className={styles.higherDegrees}>
             <div className={styles.degreeCard}>
-              <h3>Bachelor's Degree</h3>
+              <div className={styles.cardImageWrapper}>
+                <Image src="/aaron-burden-TNlHf4m4gpI-unsplash.jpg" alt="Bachelor's Degree" fill className={styles.cardImage} />
+              </div>
+              <div className={styles.cardContent}>
+                <h3>Bachelor's Degree</h3>
+              </div>
             </div>
             <div className={styles.degreeCard}>
-              <h3>Master's Degree</h3>
+              <div className={styles.cardImageWrapper}>
+                <Image src="/iwaria-inc-SESt1VL2D-w-unsplash.jpg" alt="Master's Degree" fill className={styles.cardImage} />
+              </div>
+              <div className={styles.cardContent}>
+                <h3>Master's Degree</h3>
+              </div>
             </div>
             <div className={styles.degreeCard}>
-              <h3>Doctorate</h3>
-              <p>a. Doctor of Divinity (D. Div.)</p>
-              <p>b. Doctor of Theology (Th.D.)</p>
+              <div className={styles.cardImageWrapper}>
+                <Image src="/michael-odida-ejG7c5cHlHo-unsplash.jpg" alt="Doctorate" fill className={styles.cardImage} />
+              </div>
+              <div className={styles.cardContent}>
+                <h3>Doctorate</h3>
+                <p>a. Doctor of Divinity (D. Div.)</p>
+                <p>b. Doctor of Theology (Th.D.)</p>
+              </div>
             </div>
           </div>
         </section>
