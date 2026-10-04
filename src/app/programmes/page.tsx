@@ -26,6 +26,7 @@ export default function Programmes() {
             <li>15. Certificate in Church Planting</li>
             <li>16. Certificate in Church Administration</li>
             <li>17. Certificate in Trauma-Informed Support</li>
+            <li>18. Certificate in Chaplaincy</li>
           </ul>
         </section>
 
@@ -83,6 +84,21 @@ export default function Programmes() {
               <tr><td>ADIP 114</td><td>Research Methodology II</td></tr>
             </tbody>
           </table>
+        </section>
+
+        <section className={styles.section}>
+          <h2>Master Classes</h2>
+          <ul className={styles.courseList}>
+            <li>1. MASTER CLASS IN BIBLE TRANSLATION</li>
+            <li>2. MASTER CLASS IN CYBERTHEOLOGY</li>
+            <li>3. MASTER CLASS IN AI-ASSISTED BIBLE STUDY</li>
+            <li>4. MASTER CLASS IN WEALTH INTELLIGENCE</li>
+            <li>5. MASTER CLASS IN CHURCH ADMINISTRATION</li>
+            <li>6. MASTER CLASS IN MENTORING AND COACHING</li>
+            <li>7. MASTER CLASS IN HUMAN RESOURCES MANAGEMENT IN CHURCH</li>
+            <li>8. MASTER CLASS IN PREACHING SKILLS</li>
+            <li>9. MASTER CLASS IN CHURCH PLANING</li>
+          </ul>
         </section>
 
         <section className={styles.section}>

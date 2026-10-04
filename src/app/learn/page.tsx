@@ -11,6 +11,20 @@ export default function StudentDashboard() {
       <h1 className={styles.pageTitle}>Student Dashboard</h1>
       
       <section className={styles.section}>
+        <h2>Virtual Classroom Interface</h2>
+        <div className={styles.featuresGrid}>
+          <div className={styles.feature}>🎥 Live class</div>
+          <div className={styles.feature}>🎧 Audio</div>
+          <div className={styles.feature}>📄 Notes</div>
+          <div className={styles.feature}>📚 Reading materials</div>
+          <div className={styles.feature}>💬 Discussion forum</div>
+          <div className={styles.feature}>📝 Assignment</div>
+          <div className={styles.feature}>📊 Quiz</div>
+          <div className={styles.feature}>🎓 Examination</div>
+        </div>
+      </section>
+
+      <section className={styles.section}>
         <h2>Continue Learning</h2>
         <div className={styles.courseGrid}>
           {enrolledCourses.map(course => (

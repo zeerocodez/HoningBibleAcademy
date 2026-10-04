@@ -4,13 +4,14 @@ import { notFound } from 'next/navigation';
 import styles from './page.module.css';
 
 interface Props {
-  params: {
+  params: Promise<{
     courseSlug: string;
-  };
+  }>;
 }
 
-export default function CourseOverview({ params }: Props) {
-  const course = getCourseBySlug(params.courseSlug);
+export default async function CourseOverview({ params }: Props) {
+  const { courseSlug } = await params;
+  const course = getCourseBySlug(courseSlug);
 
   if (!course) {
     notFound();

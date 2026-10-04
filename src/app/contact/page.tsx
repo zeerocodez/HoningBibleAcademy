@@ -21,7 +21,7 @@ export default function ContactPage() {
               <div className={styles.contactDetails}>
                 <div className={styles.detailItem}>
                   <strong>Email:</strong>
-                  <span>support@honingbibleacademy.co.uk</span>
+                  <span>support@honingbibleacademy.org.ng</span>
                 </div>
                 <div className={styles.detailItem}>
                   <strong>Office Hours:</strong>
