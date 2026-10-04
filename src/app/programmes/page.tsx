@@ -97,7 +97,7 @@ export default function Programmes() {
             <li>6. MASTER CLASS IN MENTORING AND COACHING</li>
             <li>7. MASTER CLASS IN HUMAN RESOURCES MANAGEMENT IN CHURCH</li>
             <li>8. MASTER CLASS IN PREACHING SKILLS</li>
-            <li>9. MASTER CLASS IN CHURCH PLANING</li>
+            <li>9. MASTER CLASS IN CHURCH PLANTING</li>
           </ul>
         </section>
 
