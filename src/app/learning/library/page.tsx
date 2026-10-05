@@ -27,21 +27,33 @@ export default function ELibraryCategoryPage({
             <h2>{formatCategoryName(category)} Resources</h2>
             <p className={styles.description}>Browse and access materials available in this category.</p>
             
-            {/* Dummy content for the library */}
-            <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ padding: '1.5rem', border: '1px solid #e2e8f0', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div>
-                  <h3 style={{ margin: '0 0 0.5rem 0' }}>Do You Understand What You Are Reading? A Journey to Biblical Insight</h3>
-                  <p style={{ margin: 0, color: '#64748b' }}>Clifford Stephen Ph.D, D.Div</p>
+            {/* Library Content */}
+            <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <div style={{ padding: '1.5rem', border: '1px solid #e2e8f0', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                  <img src="/images/biblical_insight_book.jpg" alt="Do You Understand What You Are Reading?" style={{ width: '80px', height: '110px', objectFit: 'cover', borderRadius: '6px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }} />
+                  <div>
+                    <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.25rem', color: '#1f2937' }}>Do You Understand What You Are Reading? A Journey to Biblical Insight</h3>
+                    <p style={{ margin: 0, color: '#64748b' }}>Clifford Stephen Ph.D, D.Div</p>
+                  </div>
                 </div>
-                <button className="button button-primary" style={{ padding: '0.5rem 1rem' }}>Download PDF</button>
+                <a href="#" download className="button button-primary" style={{ padding: '0.6rem 1.2rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  Download PDF
+                </a>
               </div>
-              <div style={{ padding: '1.5rem', border: '1px solid #e2e8f0', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div>
-                  <h3 style={{ margin: '0 0 0.5rem 0' }}>Introduction to Biblical Hermeneutics</h3>
-                  <p style={{ margin: 0, color: '#64748b' }}>Honing Bible Academy Faculty</p>
+              <div style={{ padding: '1.5rem', border: '1px solid #e2e8f0', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                  <img src="/images/hermeneutics_book.jpg" alt="Introduction to Biblical Hermeneutics" style={{ width: '80px', height: '110px', objectFit: 'cover', borderRadius: '6px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }} />
+                  <div>
+                    <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.25rem', color: '#1f2937' }}>Introduction to Biblical Hermeneutics</h3>
+                    <p style={{ margin: 0, color: '#64748b' }}>Honing Bible Academy Faculty</p>
+                  </div>
                 </div>
-                <button className="button button-primary" style={{ padding: '0.5rem 1rem' }}>Download PDF</button>
+                <a href="#" download className="button button-primary" style={{ padding: '0.6rem 1.2rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  Download PDF
+                </a>
               </div>
             </div>
           </section>
