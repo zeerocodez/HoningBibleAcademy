@@ -74,3 +74,14 @@ model Enrollment {
   
   @@unique([userId, courseId])
 }
+
+model LibraryResource {
+  id          String   @id @default(cuid())
+  title       String
+  author      String?
+  category    String
+  fileUrl     String
+  fileType    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
