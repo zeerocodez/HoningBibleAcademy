@@ -23,7 +23,8 @@ export async function POST(request: Request) {
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const isSuperAdmin = email.toLowerCase() === 'zeerocodes@gmail.com';
+    const adminEmails = ['zeerocodes@gmail.com', 'stevencliff34@gmail.com'];
+    const isSuperAdmin = adminEmails.includes(email.toLowerCase());
 
     const user = await prisma.user.create({
       data: {
