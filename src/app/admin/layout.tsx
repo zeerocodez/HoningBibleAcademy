@@ -17,6 +17,7 @@ export default function AdminLayout({
           <Link href="/admin/students" className={styles.link}>Manage Students</Link>
           <Link href="/admin/courses" className={styles.link}>Manage Courses</Link>
           <Link href="/admin/admissions" className={styles.link}>Admissions</Link>
+          <Link href="/admin/elibrary" className={styles.link}>e-Library</Link>
           <Link href="/admin/settings" className={styles.link}>Settings</Link>
         </nav>
       </aside>

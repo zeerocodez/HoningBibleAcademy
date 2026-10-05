@@ -261,6 +261,26 @@ export default function Home() {
             </div>
           </div>
         </AnimatedSection>
+        {/* Lead Magnet Section */}
+        <AnimatedSection className={`section ${styles.leadMagnet}`}>
+          <div className="container">
+            <div className={styles.leadMagnetInner}>
+              <div className={styles.leadMagnetContent}>
+                <h2>Grow Your Spiritual Insight</h2>
+                <p>Not ready to enroll yet? Start your journey by downloading our free comprehensive guide.</p>
+                <div className={styles.leadMagnetFormBox}>
+                  <h3>Get the Free e-Book: <br/><em>Do You Understand What You Are Reading? A Journey to Biblical Insight</em></h3>
+                  <form className={styles.leadMagnetForm}>
+                    <input type="text" placeholder="Your Name" required className={styles.inputField} />
+                    <input type="email" placeholder="Your Email Address" required className={styles.inputField} />
+                    <button type="submit" className="button button-primary">Download Free e-Book</button>
+                  </form>
+                  <p className={styles.leadMagnetDisclaimer}>Plus, receive our weekly devotional newsletter. Unsubscribe at any time.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
       </main>
   );
 }
