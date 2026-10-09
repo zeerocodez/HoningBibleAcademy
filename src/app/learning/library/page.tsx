@@ -6,9 +6,10 @@ import { prisma } from '@/lib/prisma';
 export default async function ELibraryCategoryPage({
   searchParams,
 }: {
-  searchParams: { category?: string };
+  searchParams: Promise<{ category?: string }>;
 }) {
-  const category = searchParams.category || 'all';
+  const params = await searchParams;
+  const category = params.category || 'all';
 
   const formatCategoryName = (cat: string) => {
     return cat.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
