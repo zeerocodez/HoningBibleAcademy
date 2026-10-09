@@ -2,17 +2,24 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 export async function POST(request: Request) {
   try {
+    const session = await getServerSession(authOptions);
+    if (!session || session.user?.role !== 'ADMIN') {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const formData = await request.formData();
     
-    const title = formData.get('title') as string;
+    const title = formData.get('title') as string | null;
     const author = formData.get('author') as string;
     const category = formData.get('category') as string;
     const files = formData.getAll('files') as File[];
 
-    if (!title || !category || !files || files.length === 0) {
+    if (!category || !files || files.length === 0) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
@@ -38,10 +45,15 @@ export async function POST(request: Request) {
       await writeFile(filePath, buffer);
       
       const fileUrl = `/uploads/${uniqueFilename}`;
+      
+      let resourceTitle = file.name.replace(/\.[^/.]+$/, ""); // strip extension
+      if (title) {
+        resourceTitle = files.length > 1 ? `${title} - ${file.name}` : title;
+      }
 
       const resource = await prisma.libraryResource.create({
         data: {
-          title: files.length > 1 ? `${title} - ${file.name}` : title,
+          title: resourceTitle,
           author,
           category,
           fileUrl,

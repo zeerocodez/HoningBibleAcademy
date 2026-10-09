@@ -4,10 +4,17 @@ import Link from 'next/link';
 import { useState } from 'react';
 import styles from './Header.module.css';
 
+import { usePathname } from 'next/navigation';
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
 
   return (
     <header className={styles.header}>

@@ -11,6 +11,7 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      allowDangerousEmailAccountLinking: true,
     }),
     CredentialsProvider({
       name: "credentials",
@@ -52,6 +53,29 @@ export const authOptions: NextAuthOptions = {
   debug: process.env.NODE_ENV === "development",
   session: {
     strategy: "jwt",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.role = (user as any).role;
+        token.id = user.id;
+      }
+      // If user is not present (subsequent calls), fetch role from DB just to be safe if it was updated
+      if (!user && token.email) {
+        const dbUser = await prisma.user.findUnique({ where: { email: token.email }});
+        if (dbUser) {
+          token.role = dbUser.role;
+        }
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        (session.user as any).role = token.role;
+        (session.user as any).id = token.id;
+      }
+      return session;
+    }
   },
   secret: process.env.NEXTAUTH_SECRET || "verysecret_fallback_key_for_dev",
 };

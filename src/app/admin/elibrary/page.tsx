@@ -76,8 +76,8 @@ export default function ELibraryAdmin() {
         
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
-            <label htmlFor="title">Title</label>
-            <input type="text" name="title" id="title" className={styles.input} placeholder="Document Title" required />
+            <label htmlFor="title">Title (Optional if uploading multiple files)</label>
+            <input type="text" name="title" id="title" className={styles.input} placeholder="Document Title" />
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="author">Author</label>

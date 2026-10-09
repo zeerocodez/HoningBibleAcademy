@@ -1,11 +1,17 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import styles from './WhatsAppWidget.module.css';
 
 export default function WhatsAppWidget() {
+  const pathname = usePathname();
   const phoneNumber = "2347064941557"; // Provided by user
   const message = encodeURIComponent("Hello! I'm interested in learning more about Honing Bible Academy.");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
 
   return (
     <a 

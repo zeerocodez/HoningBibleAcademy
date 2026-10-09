@@ -19,11 +19,13 @@ export default function EnrollPage() {
     const email = formData.get('email');
     const password = formData.get('password');
 
+    const courseId = formData.get('courseId') || 'certificate-in-biblical-studies';
+
     try {
       const res = await fetch('/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password })
+        body: JSON.stringify({ name, email, password, courseId })
       });
 
       if (res.ok) {
@@ -59,7 +61,7 @@ export default function EnrollPage() {
                 type="button" 
                 className={`button button-secondary`} 
                 style={{ width: '100%', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}
-                onClick={() => import('next-auth/react').then(mod => mod.signIn('google'))}
+                onClick={() => import('next-auth/react').then(mod => mod.signIn('google', { callbackUrl: '/login-success' }))}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -117,7 +119,18 @@ export default function EnrollPage() {
                   <span>Total</span>
                   <span>₦75,000 / $50</span>
                 </div>
-                <ul className={styles.includesList}>
+                
+                <div style={{ marginTop: '1.5rem', padding: '1rem', backgroundColor: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+                  <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', color: '#334155' }}>Payment Information</h3>
+                  <p style={{ fontSize: '0.875rem', color: '#475569', marginBottom: '0.5rem' }}>For Tuition, Certification and other school charges:</p>
+                  <div style={{ fontSize: '0.9rem', fontWeight: '500', color: '#1e293b' }}>
+                    <div>Account Name: HONING BIBLE ACADEMY</div>
+                    <div>Account Number: 1031567788</div>
+                    <div>Bank: United Bank for Africa</div>
+                  </div>
+                </div>
+
+                <ul className={styles.includesList} style={{ marginTop: '1.5rem' }}>
                   <li>✓ Lifetime access to course materials</li>
                   <li>✓ Private learning journal</li>
                   <li>✓ Progress tracking</li>

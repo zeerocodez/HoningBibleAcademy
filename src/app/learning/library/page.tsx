@@ -1,8 +1,9 @@
 import PageHero from '@/components/PageHero';
 import styles from '../page.module.css';
 import Link from 'next/link';
+import { prisma } from '@/lib/prisma';
 
-export default function ELibraryCategoryPage({
+export default async function ELibraryCategoryPage({
   searchParams,
 }: {
   searchParams: { category?: string };
@@ -12,6 +13,11 @@ export default function ELibraryCategoryPage({
   const formatCategoryName = (cat: string) => {
     return cat.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   };
+
+  const resources = await prisma.libraryResource.findMany({
+    where: category !== 'all' ? { category } : undefined,
+    orderBy: { createdAt: 'desc' }
+  });
 
   return (
     <>
@@ -29,32 +35,27 @@ export default function ELibraryCategoryPage({
             
             {/* Library Content */}
             <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <div style={{ padding: '1.5rem', border: '1px solid #e2e8f0', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                  <img src="/images/biblical_insight_book.jpg" alt="Do You Understand What You Are Reading?" style={{ width: '80px', height: '110px', objectFit: 'cover', borderRadius: '6px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }} />
-                  <div>
-                    <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.25rem', color: '#1f2937' }}>Do You Understand What You Are Reading? A Journey to Biblical Insight</h3>
-                    <p style={{ margin: 0, color: '#64748b' }}>Clifford Stephen Ph.D, D.Div</p>
+              {resources.length === 0 ? (
+                <p>No resources available in this category yet.</p>
+              ) : (
+                resources.map(resource => (
+                  <div key={resource.id} style={{ padding: '1.5rem', border: '1px solid #e2e8f0', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                      <div style={{ width: '60px', height: '80px', backgroundColor: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '6px', fontSize: '2rem' }}>
+                        📄
+                      </div>
+                      <div>
+                        <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.25rem', color: '#1f2937' }}>{resource.title}</h3>
+                        <p style={{ margin: 0, color: '#64748b' }}>{resource.author || 'Honing Bible Academy'}</p>
+                      </div>
+                    </div>
+                    <a href={resource.fileUrl} download target="_blank" rel="noopener noreferrer" className="button button-primary" style={{ padding: '0.6rem 1.2rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                      Download
+                    </a>
                   </div>
-                </div>
-                <a href="#" download className="button button-primary" style={{ padding: '0.6rem 1.2rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                  Download PDF
-                </a>
-              </div>
-              <div style={{ padding: '1.5rem', border: '1px solid #e2e8f0', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                  <img src="/images/hermeneutics_book.jpg" alt="Introduction to Biblical Hermeneutics" style={{ width: '80px', height: '110px', objectFit: 'cover', borderRadius: '6px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }} />
-                  <div>
-                    <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.25rem', color: '#1f2937' }}>Introduction to Biblical Hermeneutics</h3>
-                    <p style={{ margin: 0, color: '#64748b' }}>Honing Bible Academy Faculty</p>
-                  </div>
-                </div>
-                <a href="#" download className="button button-primary" style={{ padding: '0.6rem 1.2rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                  Download PDF
-                </a>
-              </div>
+                ))
+              )}
             </div>
           </section>
         </div>

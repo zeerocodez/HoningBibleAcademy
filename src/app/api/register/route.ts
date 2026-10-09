@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { prisma } from '@/lib/prisma';
+import { sendWelcomeEmail, sendAdminNotification } from '@/lib/email';
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, password } = body;
+    const { name, email, password, courseId } = body;
 
     if (!name || !email || !password) {
       return new NextResponse('Missing info', { status: 400 });
@@ -34,6 +35,24 @@ export async function POST(request: Request) {
         role: isSuperAdmin ? 'ADMIN' : 'STUDENT'
       }
     });
+
+    // Create an enrollment record for the user if they are a student
+    if (!isSuperAdmin) {
+      const selectedCourseId = courseId || 'certificate-in-biblical-studies';
+      await prisma.enrollment.create({
+        data: {
+          userId: user.id,
+          courseId: selectedCourseId,
+          status: 'PENDING'
+        }
+      });
+
+      // Send transactional emails
+      // Note: In production, these should ideally be processed in a background queue
+      // so they don't block the API response if the email server is slow.
+      sendWelcomeEmail(email, name).catch(console.error);
+      sendAdminNotification(name, email, selectedCourseId).catch(console.error);
+    }
 
     return NextResponse.json(user);
   } catch (error: any) {
