@@ -1,12 +1,10 @@
-import { prisma } from '@/lib/prisma';
+'use client';
+
+import { useState } from 'react';
 import styles from '../page.module.css';
 
-export default async function AdminStudents() {
-  const students = await prisma.user.findMany({
-    where: { role: 'STUDENT' },
-    orderBy: { createdAt: 'desc' },
-    include: { enrollments: true }
-  });
+export default function AdminStudents() {
+  const [students] = useState<any[]>([]);
 
   return (
     <div>
@@ -35,7 +33,7 @@ export default async function AdminStudents() {
                   <td>{student.name || 'N/A'}</td>
                   <td>{student.email}</td>
                   <td>{new Date(student.createdAt).toLocaleDateString()}</td>
-                  <td>{student.enrollments.length} Course(s)</td>
+                  <td>{student.enrollments?.length || 0} Course(s)</td>
                   <td>
                     <button className={styles.actionBtn} style={{ marginRight: '0.5rem', padding: '0.3rem 0.6rem', border: 'none', background: '#3b82f6', color: 'white', borderRadius: '4px', cursor: 'pointer' }}>View</button>
                   </td>
@@ -48,3 +46,4 @@ export default async function AdminStudents() {
     </div>
   );
 }
+

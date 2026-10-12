@@ -1,20 +1,38 @@
+'use client';
+
 import Link from 'next/link';
 import styles from './layout.module.css';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { redirect } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { isAdminEmail } from '@/lib/auth-helpers';
 
-export default async function AdminLayout({
+export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
   const isAdmin = session?.user?.role === 'ADMIN' || isAdminEmail(session?.user?.email);
 
+  useEffect(() => {
+    if (status === 'unauthenticated' || (status === 'authenticated' && !isAdmin)) {
+      router.push('/login');
+    }
+  }, [status, isAdmin, router]);
+
+  if (status === 'loading') {
+    return (
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <p>Loading admin portal...</p>
+      </div>
+    );
+  }
+
   if (!session || !isAdmin) {
-    redirect('/login');
+    return null;
   }
 
   return (
@@ -35,7 +53,7 @@ export default async function AdminLayout({
       <main className={styles.mainContent}>
         <header className={styles.topbar}>
           <div className={styles.userMenu}>
-            Admin User
+            {session.user?.name || session.user?.email || 'Admin User'}
           </div>
         </header>
         <div className={styles.content}>
@@ -45,3 +63,4 @@ export default async function AdminLayout({
     </div>
   );
 }
+

@@ -1,12 +1,11 @@
-import { prisma } from '@/lib/prisma';
+'use client';
+
+import { useState } from 'react';
 import styles from '../page.module.css';
 import { approveAdmission } from '../actions';
 
-export default async function AdminAdmissions() {
-  const enrollments = await prisma.enrollment.findMany({
-    orderBy: { createdAt: 'desc' },
-    include: { user: true }
-  });
+export default function AdminAdmissions() {
+  const [enrollments] = useState<any[]>([]);
 
   return (
     <div>
@@ -33,9 +32,9 @@ export default async function AdminAdmissions() {
             ) : (
               enrollments.map(enrollment => (
                 <tr key={enrollment.id}>
-                  <td>{enrollment.user.name || 'N/A'}</td>
-                  <td>{enrollment.user.email}</td>
-                  <td style={{ textTransform: 'capitalize' }}>{enrollment.courseId.replace(/-/g, ' ')}</td>
+                  <td>{enrollment.user?.name || 'N/A'}</td>
+                  <td>{enrollment.user?.email}</td>
+                  <td style={{ textTransform: 'capitalize' }}>{enrollment.courseId?.replace(/-/g, ' ')}</td>
                   <td>{new Date(enrollment.createdAt).toLocaleDateString()}</td>
                   <td>
                     <span className={enrollment.status === 'ACTIVE' ? styles.badgeSuccess : (enrollment.status === 'PENDING' ? styles.badgePending : styles.badgeError)}>
@@ -60,3 +59,4 @@ export default async function AdminAdmissions() {
     </div>
   );
 }
+
