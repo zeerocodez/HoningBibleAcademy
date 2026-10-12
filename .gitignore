@@ -41,11 +41,9 @@ yarn-error.log*
 next-env.d.ts
 
 # local databases
-prisma/*.db
 prisma/*.db-journal
 
 # scratchpad
 test.js
 
-public/uploads/
 .env

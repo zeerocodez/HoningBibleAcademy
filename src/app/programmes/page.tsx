@@ -31,7 +31,7 @@ export default function Programmes() {
         </section>
 
         <section className={styles.section}>
-          <h2>Diploma Programme</h2>
+          <h2>DIPLOMA IN CHRISTIAN MINISTRY AND LEADERSHIP</h2>
           <table className={styles.table}>
             <thead>
               <tr>
@@ -53,13 +53,13 @@ export default function Programmes() {
               <tr><td>DIP 111</td><td>Homiletics</td></tr>
               <tr><td>DIP 112</td><td>Effective Prayer</td></tr>
               <tr><td>DIP 113</td><td>Church History I</td></tr>
-              <tr><td>DIP 114</td><td>Research Methodology I</td></tr>
+              <tr><td>DIP 114</td><td>Leadership Skills I</td></tr>
             </tbody>
           </table>
         </section>
 
         <section className={styles.section}>
-          <h2>Advanced Diploma Programme</h2>
+          <h2>ADVANCED DIPLOMA IN CHRISTIAN MINISTRY AND LEADERSHIP</h2>
           <table className={styles.table}>
             <thead>
               <tr>
@@ -81,7 +81,8 @@ export default function Programmes() {
               <tr><td>ADIP 111</td><td>Pastoral Care and Counselling</td></tr>
               <tr><td>ADIP 112</td><td>Mentoring and Discipleship Pathways</td></tr>
               <tr><td>ADIP 113</td><td>Church Management</td></tr>
-              <tr><td>ADIP 114</td><td>Research Methodology II</td></tr>
+              <tr><td>ADIP 114</td><td>Leadership Skills II</td></tr>
+              <tr><td>ADIP 115</td><td>Research Methodology</td></tr>
             </tbody>
           </table>
         </section>

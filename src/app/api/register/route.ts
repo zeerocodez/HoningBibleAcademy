@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { prisma } from '@/lib/prisma';
 import { sendWelcomeEmail, sendAdminNotification } from '@/lib/email';
+import { isAdminEmail } from '@/lib/auth-helpers';
 
 export async function POST(request: Request) {
   try {
@@ -23,9 +24,7 @@ export async function POST(request: Request) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
-
-    const adminEmails = ['zeerocodes@gmail.com', 'stevencliff34@gmail.com'];
-    const isSuperAdmin = adminEmails.includes(email.toLowerCase());
+    const isSuperAdmin = isAdminEmail(email);
 
     const user = await prisma.user.create({
       data: {

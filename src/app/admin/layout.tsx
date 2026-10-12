@@ -3,6 +3,7 @@ import styles from './layout.module.css';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { redirect } from 'next/navigation';
+import { isAdminEmail } from '@/lib/auth-helpers';
 
 export default async function AdminLayout({
   children,
@@ -10,8 +11,9 @@ export default async function AdminLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOptions);
+  const isAdmin = session?.user?.role === 'ADMIN' || isAdminEmail(session?.user?.email);
 
-  if (!session || session.user?.role !== 'ADMIN') {
+  if (!session || !isAdmin) {
     redirect('/login');
   }
 

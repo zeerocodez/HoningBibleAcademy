@@ -5,6 +5,8 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 
+import { isAdminEmail } from "@/lib/auth-helpers";
+
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as any,
   providers: [
@@ -43,10 +45,28 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid credentials");
         }
 
+        if (isAdminEmail(user.email) && user.role !== 'ADMIN') {
+          await prisma.user.update({
+            where: { id: user.id },
+            data: { role: 'ADMIN' }
+          }).catch(console.error);
+          user.role = 'ADMIN';
+        }
+
         return user;
       }
     })
   ],
+  events: {
+    async createUser({ user }) {
+      if (isAdminEmail(user.email)) {
+        await prisma.user.update({
+          where: { id: user.id },
+          data: { role: 'ADMIN' }
+        }).catch(console.error);
+      }
+    }
+  },
   pages: {
     signIn: '/login',
   },
@@ -60,8 +80,14 @@ export const authOptions: NextAuthOptions = {
         token.role = (user as any).role;
         token.id = user.id;
       }
-      // If user is not present (subsequent calls), fetch role from DB just to be safe if it was updated
-      if (!user && token.email) {
+      
+      if (token.email && isAdminEmail(token.email)) {
+        token.role = 'ADMIN';
+        await prisma.user.updateMany({
+          where: { email: token.email, role: { not: 'ADMIN' } },
+          data: { role: 'ADMIN' }
+        }).catch(console.error);
+      } else if (!user && token.email) {
         const dbUser = await prisma.user.findUnique({ where: { email: token.email }});
         if (dbUser) {
           token.role = dbUser.role;
@@ -71,7 +97,7 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (session.user) {
-        (session.user as any).role = token.role;
+        (session.user as any).role = token.role || (isAdminEmail(session.user.email) ? 'ADMIN' : 'STUDENT');
         (session.user as any).id = token.id;
       }
       return session;
