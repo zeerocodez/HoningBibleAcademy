@@ -1,7 +1,6 @@
 import PageHero from '@/components/PageHero';
 import styles from '../page.module.css';
 import Link from 'next/link';
-import { prisma } from '@/lib/prisma';
 import { DEFAULT_EBOOKS } from '@/lib/default-ebooks';
 
 export default async function ELibraryCategoryPage({
@@ -23,55 +22,23 @@ export default async function ELibraryCategoryPage({
     return cat.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   };
 
-  let resources: any[] = [];
+  let resources = category === 'all' || category === 'ebooks' 
+    ? DEFAULT_EBOOKS 
+    : DEFAULT_EBOOKS.filter(b => b.category === category);
+
   try {
-    resources = await prisma.libraryResource.findMany({
+    const { prisma } = await import('@/lib/prisma');
+    const dbResources = await prisma.libraryResource.findMany({
       where: category !== 'all' ? { category } : undefined,
       orderBy: { createdAt: 'desc' }
     });
-  } catch (error) {
-    console.error('Error fetching library resources from database:', error);
-  }
-
-  // Fallback 1: If database returns empty or fails, load directly from public/uploads
-  if (!resources || resources.length === 0) {
-    try {
-      const fs = await import('fs');
-      const path = await import('path');
-      const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
-      if (fs.existsSync(uploadsDir)) {
-        const fileNames = fs.readdirSync(uploadsDir);
-        resources = fileNames
-          .filter(f => f.toLowerCase().endsWith('.pdf'))
-          .map(f => {
-            const cleanTitle = f
-              .replace(/^\d+-/, '')
-              .replace(/_-_Copy/gi, '')
-              .replace(/_Copy/gi, '')
-              .replace(/\.pdf$/i, '')
-              .replace(/[_-]+/g, ' ')
-              .trim();
-            return {
-              id: f,
-              title: cleanTitle,
-              author: 'Honing Bible Academy Library',
-              category: 'ebooks',
-              fileUrl: `/uploads/${f}`,
-              fileType: 'application/pdf',
-            };
-          });
-      }
-    } catch (fsError) {
-      console.error('Error loading fallback uploads:', fsError);
+    if (dbResources && dbResources.length > 0) {
+      resources = dbResources;
     }
+  } catch (error) {
+    // Database query silently falls back to DEFAULT_EBOOKS
   }
 
-  // Fallback 2: Guaranteed static catalog if serverless filesystem is isolated
-  if (!resources || resources.length === 0) {
-    resources = category === 'all' || category === 'ebooks' 
-      ? DEFAULT_EBOOKS 
-      : DEFAULT_EBOOKS.filter(b => b.category === category);
-  }
 
   return (
     <>
