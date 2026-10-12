@@ -1,7 +1,13 @@
 import Link from 'next/link';
-import { getCourseBySlug } from '@/lib/courses';
+import { courses, getCourseBySlug } from '@/lib/courses';
 import { notFound } from 'next/navigation';
 import styles from './page.module.css';
+
+export function generateStaticParams() {
+  return courses.map((course) => ({
+    courseSlug: course.slug,
+  }));
+}
 
 interface Props {
   params: Promise<{

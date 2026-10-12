@@ -1,8 +1,14 @@
 import Header from '@/components/Header';
-import { getCourseBySlug } from '@/lib/courses';
+import { courses, getCourseBySlug } from '@/lib/courses';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import styles from './page.module.css';
+
+export function generateStaticParams() {
+  return courses.map((course) => ({
+    slug: course.slug,
+  }));
+}
 
 interface Props {
   params: Promise<{

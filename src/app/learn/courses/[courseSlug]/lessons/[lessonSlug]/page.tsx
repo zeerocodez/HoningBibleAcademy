@@ -1,14 +1,22 @@
 import Link from 'next/link';
+import { courses } from '@/lib/courses';
 import styles from './page.module.css';
 
-interface Props {
-  params: {
-    courseSlug: string;
-    lessonSlug: string;
-  };
+export function generateStaticParams() {
+  return courses.map((course) => ({
+    courseSlug: course.slug,
+    lessonSlug: 'intro-to-bibliology',
+  }));
 }
 
-export default function LessonPlayer({ params }: Props) {
+interface Props {
+  params: Promise<{
+    courseSlug: string;
+    lessonSlug: string;
+  }>;
+}
+
+export default async function LessonPlayer({ params }: Props) {
   // In a real app, fetch lesson data from database based on slugs
   
   return (
