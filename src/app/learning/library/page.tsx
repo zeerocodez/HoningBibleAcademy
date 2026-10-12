@@ -1,44 +1,23 @@
+'use client';
+
 import PageHero from '@/components/PageHero';
 import styles from '../page.module.css';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import { DEFAULT_EBOOKS } from '@/lib/default-ebooks';
 
-export default async function ELibraryCategoryPage({
-  searchParams,
-}: {
-  searchParams?: Promise<{ category?: string }> | { category?: string };
-}) {
-  let category = 'ebooks';
-  try {
-    const resolvedParams = searchParams ? await Promise.resolve(searchParams) : {};
-    if (resolvedParams?.category) {
-      category = resolvedParams.category;
-    }
-  } catch (e) {
-    category = 'ebooks';
-  }
+function LibraryContent() {
+  const searchParams = useSearchParams();
+  const category = searchParams.get('category') || 'ebooks';
 
   const formatCategoryName = (cat: string) => {
     return cat.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   };
 
-  let resources = category === 'all' || category === 'ebooks' 
+  const resources = category === 'all' || category === 'ebooks' 
     ? DEFAULT_EBOOKS 
     : DEFAULT_EBOOKS.filter(b => b.category === category);
-
-  try {
-    const { prisma } = await import('@/lib/prisma');
-    const dbResources = await prisma.libraryResource.findMany({
-      where: category !== 'all' ? { category } : undefined,
-      orderBy: { createdAt: 'desc' }
-    });
-    if (dbResources && dbResources.length > 0) {
-      resources = dbResources;
-    }
-  } catch (error) {
-    // Database query silently falls back to DEFAULT_EBOOKS
-  }
-
 
   return (
     <>
@@ -82,5 +61,13 @@ export default async function ELibraryCategoryPage({
         </div>
       </main>
     </>
+  );
+}
+
+export default function ELibraryCategoryPage() {
+  return (
+    <Suspense fallback={<div>Loading library...</div>}>
+      <LibraryContent />
+    </Suspense>
   );
 }
