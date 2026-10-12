@@ -2,14 +2,22 @@ import PageHero from '@/components/PageHero';
 import styles from '../page.module.css';
 import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
+import { DEFAULT_EBOOKS } from '@/lib/default-ebooks';
 
 export default async function ELibraryCategoryPage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string }>;
+  searchParams?: Promise<{ category?: string }> | { category?: string };
 }) {
-  const params = await searchParams;
-  const category = params.category || 'all';
+  let category = 'ebooks';
+  try {
+    const resolvedParams = searchParams ? await Promise.resolve(searchParams) : {};
+    if (resolvedParams?.category) {
+      category = resolvedParams.category;
+    }
+  } catch (e) {
+    category = 'ebooks';
+  }
 
   const formatCategoryName = (cat: string) => {
     return cat.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
@@ -25,8 +33,8 @@ export default async function ELibraryCategoryPage({
     console.error('Error fetching library resources from database:', error);
   }
 
-  // Fallback: If database returns empty or fails, load uploaded PDFs directly from public/uploads
-  if (resources.length === 0) {
+  // Fallback 1: If database returns empty or fails, load directly from public/uploads
+  if (!resources || resources.length === 0) {
     try {
       const fs = await import('fs');
       const path = await import('path');
@@ -56,6 +64,13 @@ export default async function ELibraryCategoryPage({
     } catch (fsError) {
       console.error('Error loading fallback uploads:', fsError);
     }
+  }
+
+  // Fallback 2: Guaranteed static catalog if serverless filesystem is isolated
+  if (!resources || resources.length === 0) {
+    resources = category === 'all' || category === 'ebooks' 
+      ? DEFAULT_EBOOKS 
+      : DEFAULT_EBOOKS.filter(b => b.category === category);
   }
 
   return (
