@@ -111,6 +111,10 @@ export default function Programmes() {
               </div>
               <div className={styles.cardContent}>
                 <h3>Bachelor's Degree</h3>
+                <p>a. Bachelor of Arts in Religious Studies - (BA Religious Studies)</p>
+                <p>b. Bachelor of Arts in Biblical Studies - (BA Biblical Studies)</p>
+                <p>c. Bachelor of Arts in Theology - (BA Theology)</p>
+                <p>d. Bachelor of Arts in Divinity - (BA Divinity)</p>
               </div>
             </div>
             <div className={styles.degreeCard}>
@@ -119,6 +123,10 @@ export default function Programmes() {
               </div>
               <div className={styles.cardContent}>
                 <h3>Master's Degree</h3>
+                <p>a. Master of Arts in Religious Studies - (MA Religious Studies)</p>
+                <p>b. Master of Arts in Biblical Studies - (MA Biblical Studies)</p>
+                <p>c. Master of Arts in Theology - (MA Theology)</p>
+                <p>d. Master of Arts in Divinity - (MA Divinity)</p>
               </div>
             </div>
             <div className={styles.degreeCard}>
@@ -127,9 +135,62 @@ export default function Programmes() {
               </div>
               <div className={styles.cardContent}>
                 <h3>Doctorate</h3>
-                <p>a. Doctor of Divinity (D. Div.)</p>
-                <p>b. Doctor of Theology (Th.D.)</p>
+                <p>a. Doctor of Theology - (Th.D)</p>
+                <p>b. Doctor of Ministry - (D.Min)</p>
+                <p>c. Doctor of Divinity - (D.Div)</p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.section}>
+          <h2>Awards and Recognition</h2>
+          <div className={styles.awardsGrid}>
+            <div className={styles.awardCard}>
+              <div className={styles.awardIcon}>🏅</div>
+              <div className={styles.awardContent}>
+                <h3>1. Distinguished Christian Service Award</h3>
+                <p>Recognizes exceptional and sustained Christian service.</p>
+              </div>
+            </div>
+            <div className={styles.awardCard}>
+              <div className={styles.awardIcon}>🌟</div>
+              <div className={styles.awardContent}>
+                <h3>2. Lifetime Achievement Award in Christian Ministry</h3>
+                <p>Recognizes a lifetime of outstanding ministry and service.</p>
+              </div>
+            </div>
+            <div className={styles.awardCard}>
+              <div className={styles.awardIcon}>👑</div>
+              <div className={styles.awardContent}>
+                <h3>3. Outstanding Christian Leadership Award</h3>
+                <p>Recognizes exemplary leadership in Christian institutions.</p>
+              </div>
+            </div>
+            <div className={styles.awardCard}>
+              <div className={styles.awardIcon}>📜</div>
+              <div className={styles.awardContent}>
+                <h3>4. Distinguish Christian Rabbi Award</h3>
+                <p>Recognize and honour exceptional biblical teachers and scholars.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.section}>
+          <h2>HBA Fellows</h2>
+          <div className={styles.fellowsGrid}>
+            <div className={styles.fellowCard}>
+              <span className={styles.fellowBadge}>Distinguished Fellowship</span>
+              <h3 className={styles.fellowTitle}>HBA Distinguished Fellow</h3>
+              <span className={styles.fellowPostNominal}>F.H.B.A</span>
+              <p className={styles.fellowDesc}>Conferred in recognition of extraordinary commitment to biblical scholarship, spiritual depth, and pioneering ministry leadership.</p>
+            </div>
+            <div className={styles.fellowCard}>
+              <span className={styles.fellowBadge}>Honorary Fellowship</span>
+              <h3 className={styles.fellowTitle}>HBA Honorary Fellow</h3>
+              <span className={styles.fellowPostNominal}>H.F.H.B.A</span>
+              <p className={styles.fellowDesc}>Conferred upon distinguished servants of God whose lifetime contributions have significantly impacted the Christian faith and community.</p>
             </div>
           </div>
         </section>

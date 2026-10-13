@@ -87,6 +87,7 @@ export default function ELibraryAdmin() {
             <label htmlFor="category">Category</label>
             <select name="category" id="category" className={styles.input} required>
               <option value="ebooks">E-books</option>
+              <option value="commentaries">Commentaries</option>
               <option value="bible_study">Bible study materials</option>
               <option value="research_papers">Research papers</option>
               <option value="audio_lectures">Audio lectures</option>

@@ -97,24 +97,142 @@
 }
 
 .cardContent {
-  padding: 2rem;
+  padding: 1.75rem 1.5rem;
   background-color: var(--color-primary);
   color: white;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .cardContent h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
   color: var(--color-accent);
+  text-align: center;
+  width: 100%;
 }
 
 .cardContent p {
-  opacity: 0.9;
-  margin-bottom: 0.5rem;
+  opacity: 0.95;
+  margin-bottom: 0.6rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  width: 100%;
+  text-align: left;
+}
+
+/* Awards Grid */
+.awardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.awardCard {
+  background: linear-gradient(135deg, #ffffff 0%, var(--color-surface) 100%);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.awardCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-left-color: var(--color-accent-hover);
+}
+
+.awardIcon {
+  font-size: 1.75rem;
+  line-height: 1;
+  flex-shrink: 0;
+  padding: 0.6rem;
+  background-color: rgba(212, 175, 55, 0.12);
+  border-radius: var(--radius-md);
+}
+
+.awardContent h3 {
+  font-size: 1.1rem;
+  color: var(--color-primary);
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+.awardContent p {
+  color: var(--color-text-light);
   font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Fellows Grid */
+.fellowsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.fellowCard {
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-accent);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fellowCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.fellowBadge {
+  display: inline-block;
+  align-self: flex-start;
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.fellowTitle {
+  font-size: 1.35rem;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  margin: 0;
+}
+
+.fellowPostNominal {
+  font-size: 1.15rem;
+  color: var(--color-accent);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.fellowDesc {
+  color: #cbd5e1;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin: 0;
 }

@@ -217,5 +217,26 @@ export const DEFAULT_EBOOKS: LibraryItem[] = [
     author: "James Braga",
     category: "ebooks",
     fileUrl: "/uploads/1791534066110-How_to_Prepare_Bible_Messages_(James_Braga_[Braga,_James])_(Z-Library)-1.pdf"
+  },
+  {
+    id: "commentary-1",
+    title: "The IVP Bible Background Commentary: Old Testament",
+    author: "John H. Walton, Victor H. Matthews, Mark W. Chavalas",
+    category: "commentaries",
+    fileUrl: "/uploads/The-IVP-Bible-Background-Commentary_-Old-Testament.pdf"
+  },
+  {
+    id: "commentary-2",
+    title: "The IVP Bible Background Commentary: New Testament (2nd Edition)",
+    author: "Craig S. Keener",
+    category: "commentaries",
+    fileUrl: "/uploads/The-IVP-Bible-Background-Commentary_-New-Testament-2nd-edition.pdf"
+  },
+  {
+    id: "ebook-36",
+    title: "Church History & Theological Foundations",
+    author: "Honing Bible Academy",
+    category: "ebooks",
+    fileUrl: "/uploads/Church-History-2026y.pdf"
   }
 ];

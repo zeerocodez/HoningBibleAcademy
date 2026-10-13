@@ -29,6 +29,7 @@ export default function Learning() {
           <p className={styles.description}>Resources available to our students:</p>
           <div className={styles.featuresGrid}>
             <Link href="/learning/library?category=ebooks" className={styles.feature} style={{textDecoration: 'none', color: 'inherit'}}>📚 E-books</Link>
+            <Link href="/learning/library?category=commentaries" className={styles.feature} style={{textDecoration: 'none', color: 'inherit'}}>📖 Commentaries</Link>
             <Link href="/learning/library?category=bible_study" className={styles.feature} style={{textDecoration: 'none', color: 'inherit'}}>📖 Bible study materials</Link>
             <Link href="/learning/library?category=research_papers" className={styles.feature} style={{textDecoration: 'none', color: 'inherit'}}>📝 Research papers</Link>
             <Link href="/learning/library?category=audio_lectures" className={styles.feature} style={{textDecoration: 'none', color: 'inherit'}}>🎧 Audio lectures</Link>
