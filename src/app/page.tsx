@@ -240,10 +240,6 @@ export default function Home() {
               <div className={styles.pricingContent}>
                 <h3>{mainCourse.title}</h3>
                 <p>Complete Access</p>
-                <div className={styles.priceContainer}>
-                  <span className={styles.price}>{mainCourse.price}</span>
-                  <span className={styles.priceDetail}>One-time payment</span>
-                </div>
                 <ul className={styles.featureList}>
                   <li>✓ 12 Comprehensive Video Modules</li>
                   <li>✓ Private Digital Learning Journal</li>

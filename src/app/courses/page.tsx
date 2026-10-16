@@ -22,7 +22,6 @@ export default function CoursesPage() {
               <div className={styles.cardContent}>
                 <div className={styles.cardHeader}>
                   <h2>{course.title}</h2>
-                  <span className={styles.price}>{course.price}</span>
                 </div>
                 <p className={styles.description}>{course.description}</p>
                 <div className={styles.cardFooter}>

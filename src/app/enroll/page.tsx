@@ -107,17 +107,13 @@ export default function EnrollPage() {
               </form>
             </div>
 
-            {/* Order Summary */}
+            {/* Enrolment Summary */}
             <div className={styles.summarySection}>
               <div className={styles.summaryCard}>
-                <h2>Order Summary</h2>
+                <h2>Enrolment Summary</h2>
                 <div className={styles.summaryItem}>
                   <span>Certificate in Biblical Studies</span>
-                  <span>₦75,000 / $50</span>
-                </div>
-                <div className={styles.summaryTotal}>
-                  <span>Total</span>
-                  <span>₦75,000 / $50</span>
+                  <span style={{ fontWeight: 600, color: 'var(--color-primary)' }}>Full Access</span>
                 </div>
                 
                 <div style={{ marginTop: '1.5rem', padding: '1rem', backgroundColor: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>

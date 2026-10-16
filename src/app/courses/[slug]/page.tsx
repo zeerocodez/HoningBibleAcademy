@@ -38,10 +38,6 @@ export default async function CourseDetail({ params }: Props) {
               <span className={styles.metaLabel}>Format</span>
               <span className={styles.metaValue}>{course.duration}</span>
             </div>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Price</span>
-              <span className={styles.metaValue}>{course.price}</span>
-            </div>
           </div>
           
           <div className={styles.actions}>
