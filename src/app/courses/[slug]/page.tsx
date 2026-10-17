@@ -3,6 +3,7 @@ import { courses, getCourseBySlug } from '@/lib/courses';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import styles from './page.module.css';
+import { APPLICATION_FORM_URL } from '@/lib/constants';
 
 export function generateStaticParams() {
   return courses.map((course) => ({
@@ -41,7 +42,14 @@ export default async function CourseDetail({ params }: Props) {
           </div>
           
           <div className={styles.actions}>
-            <Link href="/enroll" className="button button-primary">Enroll Now</Link>
+            <a 
+              href={APPLICATION_FORM_URL} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="button button-primary"
+            >
+              Apply Now ↗
+            </a>
             <Link href="/contact" className="button button-secondary">Have questions?</Link>
           </div>
         </div>

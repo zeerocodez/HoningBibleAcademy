@@ -1,5 +1,8 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './page.module.css';
+import { APPLICATION_FORM_URL } from '@/lib/constants';
+
 export default function Programmes() {
   return (
     <main className={styles.main}>
@@ -192,6 +195,26 @@ export default function Programmes() {
               <span className={styles.fellowPostNominal}>H.F.H.B.A</span>
               <p className={styles.fellowDesc}>Conferred upon distinguished servants of God whose lifetime contributions have significantly impacted the Christian faith and community.</p>
             </div>
+          </div>
+        </section>
+
+        <section className={styles.ctaSection}>
+          <h2>Apply for Any Programme</h2>
+          <p>
+            Begin your admission process today. Fill out our unified application form for Certificate, Diploma, Master Class, or Higher Degree programmes.
+          </p>
+          <div className={styles.ctaButtons}>
+            <a 
+              href={APPLICATION_FORM_URL} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="button button-primary"
+            >
+              Apply Online Now ↗
+            </a>
+            <Link href="/admissions" className="button button-secondary">
+              View Admissions Guide
+            </Link>
           </div>
         </section>
       </div>

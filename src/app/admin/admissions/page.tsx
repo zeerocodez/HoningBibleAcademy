@@ -3,13 +3,25 @@
 import { useState } from 'react';
 import styles from '../page.module.css';
 import { approveAdmission } from '../actions';
+import { APPLICATION_FORM_URL } from '@/lib/constants';
 
 export default function AdminAdmissions() {
   const [enrollments] = useState<any[]>([]);
 
   return (
     <div>
-      <h1 className={styles.pageTitle}>Manage Admissions</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+        <h1 className={styles.pageTitle} style={{ margin: 0 }}>Manage Admissions</h1>
+        <a 
+          href={APPLICATION_FORM_URL} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="button button-primary"
+          style={{ padding: '0.5rem 1rem', fontSize: '0.875rem' }}
+        >
+          View Application Form ↗
+        </a>
+      </div>
       
       <div className={styles.panel}>
         <h2>Recent Applications & Enrollments</h2>

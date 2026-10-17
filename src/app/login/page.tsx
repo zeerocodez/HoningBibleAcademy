@@ -5,6 +5,7 @@ import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import styles from './page.module.css';
+import { APPLICATION_FORM_URL } from '@/lib/constants';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -98,8 +99,9 @@ export default function LoginPage() {
               </button>
             </form>
 
-            <div className={styles.footer}>
+            <div className={styles.footer} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <p>Don't have an account? <Link href="/enroll" className={styles.signUpLink}>Enroll now</Link></p>
+              <p>New applicant? <a href={APPLICATION_FORM_URL} target="_blank" rel="noopener noreferrer" className={styles.signUpLink}>Apply for admission ↗</a></p>
             </div>
           </div>
         </div>

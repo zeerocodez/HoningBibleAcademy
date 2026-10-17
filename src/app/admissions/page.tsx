@@ -1,6 +1,7 @@
 import PageHero from '@/components/PageHero';
 import styles from './page.module.css';
 import Link from 'next/link';
+import { APPLICATION_FORM_URL } from '@/lib/constants';
 
 export default function Admissions() {
   return (
@@ -47,8 +48,34 @@ export default function Admissions() {
           </div>
         </div>
 
-        <div className={styles.ctaContainer}>
-          <Link href="/login" className="button button-primary">Apply Now</Link>
+        <div className={styles.ctaContainer} id="apply">
+          <h2>Ready to Apply?</h2>
+          <p style={{ maxWidth: '600px', color: 'var(--color-text-light)' }}>
+            Complete the official application form below or open it in a new window to begin your admission process.
+          </p>
+          <div className={styles.actionButtons}>
+            <a 
+              href={APPLICATION_FORM_URL} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="button button-primary"
+            >
+              Apply Now (Open Form) ↗
+            </a>
+            <Link href="/login" className="button button-secondary">
+              Existing Students Portal
+            </Link>
+          </div>
+
+          <div className={styles.formWrapper}>
+            <iframe 
+              src={APPLICATION_FORM_URL} 
+              className={styles.formIframe}
+              title="Honing Bible Academy Application Form"
+            >
+              Loading application form…
+            </iframe>
+          </div>
         </div>
       </div>
     </main>

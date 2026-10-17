@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
+import { APPLICATION_FORM_URL } from '@/lib/constants';
 
 export default function EnrollPage() {
   const router = useRouter();
@@ -50,6 +51,37 @@ export default function EnrollPage() {
           <p className={`text-center ${styles.subtitle}`}>
             Join our community and begin your journey to a deeper understanding of Scripture.
           </p>
+
+          <div style={{
+            background: '#f8fafc',
+            border: '1px solid #cbd5e1',
+            borderRadius: '10px',
+            padding: '1.25rem 1.5rem',
+            marginBottom: '2rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '1rem',
+            flexWrap: 'wrap'
+          }}>
+            <div>
+              <strong style={{ color: 'var(--color-primary)', fontSize: '1.05rem', display: 'block', marginBottom: '0.25rem' }}>
+                📋 Official Programme Application
+              </strong>
+              <span style={{ color: 'var(--color-text-light)', fontSize: '0.92rem' }}>
+                Applying for admission to any of our Certificate, Diploma, or Degree programmes? Use the official form.
+              </span>
+            </div>
+            <a 
+              href={APPLICATION_FORM_URL} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="button button-primary"
+              style={{ whiteSpace: 'nowrap', padding: '0.65rem 1.25rem', fontSize: '0.92rem' }}
+            >
+              Fill Application Form ↗
+            </a>
+          </div>
 
           <div className={styles.layout}>
             {/* Enrollment Form */}

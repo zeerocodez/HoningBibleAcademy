@@ -5,7 +5,7 @@ import { courses } from '@/lib/courses';
 import AnimatedSection from '@/components/AnimatedSection';
 import ImageSlider from '@/components/ImageSlider';
 import Testimonials from '@/components/Testimonials';
-
+import { APPLICATION_FORM_URL } from '@/lib/constants';
 
 export default function Home() {
   const mainCourse = courses[0]; // The Biblical Narrative
@@ -22,12 +22,17 @@ export default function Home() {
                 Honing Bible Academy equips for Sound Biblical Insight, Effective Ministry, Leadership and Scholarship.
               </p>
               <div className={styles.heroActions}>
-                <Link href="/enroll" className={`button button-primary ${styles.ctaPrimary}`}>
-                  Start Learning Today
-                </Link>
-                <a href="#curriculum" className={`button button-secondary ${styles.ctaSecondary}`}>
-                  Explore 17 Programmes
+                <a 
+                  href={APPLICATION_FORM_URL} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className={`button button-primary ${styles.ctaPrimary}`}
+                >
+                  Apply Now ↗
                 </a>
+                <Link href="/programmes" className={`button button-secondary ${styles.ctaSecondary}`}>
+                  Explore Programmes
+                </Link>
               </div>
               <div className={styles.trustSignals}>
                 <div className={styles.avatars}>
@@ -167,7 +172,16 @@ export default function Home() {
             <div className={styles.journeyFlow}>
               <div className={styles.journeyStep}>1. DISCOVER</div>
               <div className={styles.journeyArrow}>↓</div>
-              <div className={styles.journeyStep}>2. APPLY</div>
+              <a 
+                href={APPLICATION_FORM_URL} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={styles.journeyStep}
+                style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
+                title="Open Application Form"
+              >
+                2. APPLY ↗
+              </a>
               <div className={styles.journeyArrow}>↓</div>
               <div className={styles.journeyStep}>3. ADMISSION</div>
               <div className={styles.journeyArrow}>↓</div>
@@ -249,10 +263,16 @@ export default function Home() {
                 </ul>
               </div>
               <div className={styles.pricingAction}>
-                <Link href="/enroll" className="button button-primary" style={{ width: '100%', padding: '1.25rem', fontSize: '1.1rem' }}>
-                  Enroll Now
-                </Link>
-                <p className={styles.guaranteeText}>Guaranteed secure checkout.</p>
+                <a 
+                  href={APPLICATION_FORM_URL} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="button button-primary" 
+                  style={{ width: '100%', padding: '1.25rem', fontSize: '1.1rem', textAlign: 'center', display: 'block' }}
+                >
+                  Apply Online Now ↗
+                </a>
+                <p className={styles.guaranteeText}>Official admission application.</p>
               </div>
             </div>
           </div>
