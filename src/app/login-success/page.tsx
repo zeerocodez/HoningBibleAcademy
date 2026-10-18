@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { isAdminEmail } from '@/lib/auth-helpers';
 
 export default function LoginSuccess() {
   const { data: session, status } = useSession();
@@ -11,7 +12,8 @@ export default function LoginSuccess() {
   useEffect(() => {
     if (status === 'loading') return;
 
-    if (session?.user?.role === 'ADMIN') {
+    const isAdmin = session?.user?.role === 'ADMIN' || isAdminEmail(session?.user?.email);
+    if (isAdmin) {
       router.push('/admin');
     } else {
       router.push('/learning');

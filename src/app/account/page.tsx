@@ -5,6 +5,7 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { prisma } from '@/lib/prisma';
 import { redirect } from 'next/navigation';
+import { isAdminEmail } from '@/lib/auth-helpers';
 
 export default async function AccountPage() {
   const session = await getServerSession(authOptions);
@@ -21,6 +22,8 @@ export default async function AccountPage() {
     redirect('/login');
   }
 
+  const isAdmin = user.role === 'ADMIN' || isAdminEmail(user.email);
+
   return (
     <>
       <Header />
@@ -28,7 +31,9 @@ export default async function AccountPage() {
         <div className={styles.accountContainer}>
           <div className={styles.header}>
             <h1>Account Settings</h1>
-            <Link href="/learning" className={styles.dashboardLink}>Go to Dashboard</Link>
+            <Link href={isAdmin ? "/admin" : "/learning"} className={styles.dashboardLink}>
+              Go to {isAdmin ? 'Admin Portal' : 'Dashboard'}
+            </Link>
           </div>
 
           <div className={styles.grid}>

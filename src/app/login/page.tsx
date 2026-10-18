@@ -1,16 +1,30 @@
 'use client';
 
-import { useState } from 'react';
-import { signIn } from 'next-auth/react';
+import { useState, useEffect } from 'react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import styles from './page.module.css';
 import { APPLICATION_FORM_URL } from '@/lib/constants';
+import { isAdminEmail } from '@/lib/auth-helpers';
 
 export default function LoginPage() {
   const router = useRouter();
+  const { data: session, status } = useSession();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  // If already authenticated, redirect to appropriate dashboard
+  useEffect(() => {
+    if (status === 'authenticated') {
+      const isAdmin = session?.user?.role === 'ADMIN' || isAdminEmail(session?.user?.email);
+      if (isAdmin) {
+        router.push('/admin');
+      } else {
+        router.push('/learning');
+      }
+    }
+  }, [status, session, router]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,6 +34,7 @@ export default function LoginPage() {
     const formData = new FormData(e.currentTarget);
     const email = formData.get('email');
     const password = formData.get('password');
+    const emailStr = typeof email === 'string' ? email.trim() : '';
 
     try {
       const res = await signIn('credentials', {
@@ -31,9 +46,18 @@ export default function LoginPage() {
       if (res?.error) {
         setError('Invalid email or password');
       } else {
-        const sessionRes = await fetch('/api/auth/session');
-        const session = await sessionRes.json();
-        if (session?.user?.role === 'ADMIN') {
+        let isAdmin = isAdminEmail(emailStr);
+        if (!isAdmin) {
+          try {
+            const sessionRes = await fetch('/api/auth/session', { cache: 'no-store' });
+            const sessionData = await sessionRes.json();
+            isAdmin = sessionData?.user?.role === 'ADMIN' || isAdminEmail(sessionData?.user?.email);
+          } catch (e) {
+            // fallback
+          }
+        }
+
+        if (isAdmin) {
           router.push('/admin');
         } else {
           router.push('/learning');

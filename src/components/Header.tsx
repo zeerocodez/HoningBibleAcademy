@@ -5,10 +5,15 @@ import { useState } from 'react';
 import styles from './Header.module.css';
 
 import { usePathname } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { isAdminEmail } from '@/lib/auth-helpers';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { data: session } = useSession();
+
+  const isAdmin = session?.user?.role === 'ADMIN' || isAdminEmail(session?.user?.email);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -37,7 +42,13 @@ export default function Header() {
           <Link href="/faculty" className={styles.link} onClick={() => setIsMenuOpen(false)}>FACULTY</Link>
           <Link href="/events" className={styles.link} onClick={() => setIsMenuOpen(false)}>EVENTS</Link>
           <Link href="/contact" className={styles.link} onClick={() => setIsMenuOpen(false)}>CONTACT</Link>
-          <Link href="/login" className={styles.button} onClick={() => setIsMenuOpen(false)}>STUDENT PORTAL</Link>
+          {isAdmin ? (
+            <Link href="/admin" className={styles.button} onClick={() => setIsMenuOpen(false)}>ADMIN PORTAL</Link>
+          ) : session?.user ? (
+            <Link href="/learning" className={styles.button} onClick={() => setIsMenuOpen(false)}>DASHBOARD</Link>
+          ) : (
+            <Link href="/login" className={styles.button} onClick={() => setIsMenuOpen(false)}>STUDENT PORTAL</Link>
+          )}
         </nav>
       </div>
     </header>
