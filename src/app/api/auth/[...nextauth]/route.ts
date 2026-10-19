@@ -7,6 +7,13 @@ import bcrypt from "bcryptjs";
 
 import { isAdminEmail } from "@/lib/auth-helpers";
 
+if (!process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL.includes("localhost")) {
+  if (process.env.NODE_ENV === "production") {
+    process.env.NEXTAUTH_URL = "https://honingbibleacademy.org.ng";
+  }
+}
+process.env.AUTH_TRUST_HOST = "true";
+
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as any,
   providers: [
