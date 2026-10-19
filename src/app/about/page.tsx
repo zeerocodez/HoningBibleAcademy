@@ -9,6 +9,34 @@ export default function About() {
         <div className="container" style={{ marginTop: '2rem' }}>
         
         <section className={styles.section}>
+          <h2>About Honing Bible Academy</h2>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.6rem',
+            backgroundColor: '#f8fafc',
+            border: '1px solid #cbd5e1',
+            borderLeft: '4px solid var(--color-primary, #1e3a8a)',
+            color: '#1e293b',
+            padding: '0.75rem 1.25rem',
+            borderRadius: '6px',
+            fontSize: '0.98rem',
+            fontWeight: 600,
+            marginBottom: '1.75rem',
+            lineHeight: '1.5'
+          }}>
+            <span>🏛️</span>
+            <span>Licensed and accredited by the Nigeria Council for Theological Studies and Christian Education (NICTSCE).</span>
+          </div>
+          <p>
+            Honing Bible Academy (HBA) is a biblical training institution committed to equipping believers, ministers, biblical scholars, and Christian leaders with sound biblical insight, effective ministry skills, leadership development, and scholarly competence for impactful Christian service.
+          </p>
+          <p>
+            The Academy is dedicated to promoting excellence in biblical education, ministerial preparation, Christian leadership, and scholarly engagement. Through structured programmes and relevant learning experiences, HBA empowers individuals to deepen their understanding of Scripture, strengthen their ministry capabilities, develop effective leadership skills, and respond to the contemporary challenges of the Church and society.
+          </p>
+        </section>
+
+        <section className={styles.section}>
           <h2>Vision Statement</h2>
           <p>We see a generation of believers being honed through sound biblical teaching, spiritual maturity, and godly character for effective Christian service and global impact.</p>
         </section>
