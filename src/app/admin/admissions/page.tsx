@@ -1,12 +1,35 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../page.module.css';
-import { approveAdmission } from '../actions';
+import { approveAdmission, getAdmissions } from '../actions';
 import { APPLICATION_FORM_URL } from '@/lib/constants';
 
 export default function AdminAdmissions() {
-  const [enrollments] = useState<any[]>([]);
+  const [enrollments, setEnrollments] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const loadData = async () => {
+    try {
+      const data = await getAdmissions();
+      setEnrollments(data);
+    } catch (e) {
+      console.error('Failed to load admissions:', e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const handleApprove = async (id: string) => {
+    const formData = new FormData();
+    formData.append('id', id);
+    await approveAdmission(formData);
+    await loadData();
+  };
 
   return (
     <div>
@@ -37,9 +60,13 @@ export default function AdminAdmissions() {
             </tr>
           </thead>
           <tbody>
-            {enrollments.length === 0 ? (
+            {loading ? (
               <tr>
-                <td colSpan={6} style={{ textAlign: 'center', padding: '1rem' }}>No admissions found.</td>
+                <td colSpan={6} style={{ textAlign: 'center', padding: '1.5rem' }}>Loading admissions...</td>
+              </tr>
+            ) : enrollments.length === 0 ? (
+              <tr>
+                <td colSpan={6} style={{ textAlign: 'center', padding: '1.5rem' }}>No admissions found.</td>
               </tr>
             ) : (
               enrollments.map(enrollment => (
@@ -54,12 +81,17 @@ export default function AdminAdmissions() {
                     </span>
                   </td>
                   <td>
-                    <button className={styles.actionBtn} style={{ marginRight: '0.5rem', padding: '0.3rem 0.6rem', border: 'none', background: '#3b82f6', color: 'white', borderRadius: '4px', cursor: 'pointer' }}>Review</button>
-                    {enrollment.status !== 'ACTIVE' && (
-                      <form action={approveAdmission} style={{ display: 'inline-block' }}>
-                        <input type="hidden" name="id" value={enrollment.id} />
-                        <button type="submit" className={styles.actionBtn} style={{ padding: '0.3rem 0.6rem', border: 'none', background: '#10b981', color: 'white', borderRadius: '4px', cursor: 'pointer' }}>Approve</button>
-                      </form>
+                    {enrollment.status !== 'ACTIVE' ? (
+                      <button 
+                        type="button" 
+                        onClick={() => handleApprove(enrollment.id)}
+                        className={styles.actionBtn} 
+                        style={{ padding: '0.35rem 0.75rem', border: 'none', background: '#10b981', color: 'white', borderRadius: '4px', cursor: 'pointer', fontWeight: 600 }}
+                      >
+                        Approve
+                      </button>
+                    ) : (
+                      <span style={{ color: '#16a34a', fontSize: '0.85rem', fontWeight: 600 }}>Approved</span>
                     )}
                   </td>
                 </tr>
@@ -71,4 +103,3 @@ export default function AdminAdmissions() {
     </div>
   );
 }
-

@@ -11,14 +11,14 @@ async function main() {
       where: {
         userId_courseId: {
           userId: user.id,
-          courseId: 'certificate-in-biblical-studies'
+          courseId: 'cert-biblical-studies'
         }
       },
-      update: {},
+      update: { status: 'ACTIVE' },
       create: {
         userId: user.id,
-        courseId: 'certificate-in-biblical-studies',
-        status: 'PENDING'
+        courseId: 'cert-biblical-studies',
+        status: 'ACTIVE'
       }
     });
   }

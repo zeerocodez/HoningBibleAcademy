@@ -31,3 +31,37 @@ export async function saveSettings(formData: FormData) {
   // In a real app, save to DB. For now just revalidate
   revalidatePath('/admin/settings');
 }
+
+export async function getAdmissions() {
+  const session = await getServerSession(authOptions);
+  const isAdmin = session?.user?.role === 'ADMIN' || isAdminEmail(session?.user?.email);
+  if (!session || !isAdmin) throw new Error('Unauthorized');
+
+  return prisma.enrollment.findMany({
+    orderBy: { createdAt: 'desc' },
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        }
+      }
+    }
+  });
+}
+
+export async function getStudents() {
+  const session = await getServerSession(authOptions);
+  const isAdmin = session?.user?.role === 'ADMIN' || isAdminEmail(session?.user?.email);
+  if (!session || !isAdmin) throw new Error('Unauthorized');
+
+  return prisma.user.findMany({
+    where: { role: 'STUDENT' },
+    orderBy: { createdAt: 'desc' },
+    include: {
+      enrollments: true
+    }
+  });
+}
+

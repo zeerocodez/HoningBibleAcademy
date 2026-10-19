@@ -17,7 +17,8 @@ interface Props {
 
 export default async function CourseOverview({ params }: Props) {
   const { courseSlug } = await params;
-  const course = getCourseBySlug(courseSlug);
+  const normalizedSlug = courseSlug === 'certificate-in-biblical-studies' ? 'cert-biblical-studies' : courseSlug;
+  const course = getCourseBySlug(normalizedSlug);
 
   if (!course) {
     notFound();

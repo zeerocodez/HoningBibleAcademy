@@ -13,9 +13,11 @@ export async function POST(request: Request) {
       return new NextResponse('Missing info', { status: 400 });
     }
 
+    const trimmedEmail = email.trim().toLowerCase();
+
     const userExists = await prisma.user.findUnique({
       where: {
-        email
+        email: trimmedEmail
       }
     });
 
@@ -24,12 +26,12 @@ export async function POST(request: Request) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
-    const isSuperAdmin = isAdminEmail(email);
+    const isSuperAdmin = isAdminEmail(trimmedEmail);
 
     const user = await prisma.user.create({
       data: {
         name,
-        email,
+        email: trimmedEmail,
         password: hashedPassword,
         role: isSuperAdmin ? 'ADMIN' : 'STUDENT'
       }
@@ -37,20 +39,21 @@ export async function POST(request: Request) {
 
     // Create an enrollment record for the user if they are a student
     if (!isSuperAdmin) {
-      const selectedCourseId = courseId || 'certificate-in-biblical-studies';
+      const selectedCourseId = (!courseId || courseId === 'certificate-in-biblical-studies')
+        ? 'cert-biblical-studies'
+        : courseId;
+
       await prisma.enrollment.create({
         data: {
           userId: user.id,
           courseId: selectedCourseId,
-          status: 'PENDING'
+          status: 'ACTIVE'
         }
       });
 
       // Send transactional emails
-      // Note: In production, these should ideally be processed in a background queue
-      // so they don't block the API response if the email server is slow.
-      sendWelcomeEmail(email, name).catch(console.error);
-      sendAdminNotification(name, email, selectedCourseId).catch(console.error);
+      sendWelcomeEmail(trimmedEmail, name).catch(console.error);
+      sendAdminNotification(name, trimmedEmail, selectedCourseId).catch(console.error);
     }
 
     return NextResponse.json(user);

@@ -8,6 +8,31 @@ export default function Learning() {
       <PageHero title="HBA Virtual Classroom & Learning" imageSrc="/lucas-law-ecELcxmJTk4-unsplash.jpg" />
       <main className={styles.main}>
         <div className="container" style={{ marginTop: '2rem' }}>
+
+        <div style={{
+          backgroundColor: '#eff6ff',
+          border: '1px solid #bfdbfe',
+          borderRadius: '12px',
+          padding: '1.25rem 1.75rem',
+          marginBottom: '2rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '1rem'
+        }}>
+          <div>
+            <h3 style={{ margin: '0 0 0.25rem 0', color: '#1e3a8a', fontSize: '1.15rem' }}>
+              🎓 Active Student Learning Portal (LMS)
+            </h3>
+            <p style={{ margin: 0, color: '#3b82f6', fontSize: '0.92rem' }}>
+              Access your enrolled courses, syllabus, lessons, and personal learning journal.
+            </p>
+          </div>
+          <Link href="/learn" className="button button-primary" style={{ whiteSpace: 'nowrap', padding: '0.65rem 1.25rem', fontSize: '0.92rem' }}>
+            Go to My Dashboard & Courses →
+          </Link>
+        </div>
         
         <section className={styles.section}>
           <h2>The Virtual Classroom Interface</h2>

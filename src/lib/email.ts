@@ -13,13 +13,13 @@ export async function sendWelcomeEmail(to: string, name: string) {
     await transporter.sendMail({
       from: `"Honing Bible Academy" <${process.env.EMAIL_USER || 'admin@honingbibleacademy.com'}>`,
       to,
-      subject: 'Welcome to Honing Bible Academy!',
+      subject: 'Welcome to Honing Bible Academy - Enrolment Confirmed!',
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
           <h2>Welcome, ${name}!</h2>
           <p>Thank you for enrolling in Honing Bible Academy. We are thrilled to have you join our community.</p>
-          <p>Your application has been received and is currently marked as <strong>PENDING</strong>.</p>
-          <p>Our admin team will review your application shortly. Once approved, you will have full access to your student dashboard and courses.</p>
+          <p>Your enrollment has been successfully completed and is currently <strong>ACTIVE</strong>.</p>
+          <p>You now have immediate access to your courses, student dashboard, and the digital library.</p>
           <br/>
           <p>Blessings,</p>
           <p><strong>The Honing Bible Academy Team</strong></p>
@@ -38,17 +38,16 @@ export async function sendAdminNotification(newUserName: string, newUserEmail: s
     await transporter.sendMail({
       from: `"Honing Bible Academy System" <${process.env.EMAIL_USER || 'admin@honingbibleacademy.com'}>`,
       to: adminEmail,
-      subject: 'New Student Enrollment - Action Required',
+      subject: 'New Student Enrollment - Confirmed',
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
           <h2>New Enrollment Alert</h2>
-          <p>A new student has just registered on the platform.</p>
+          <p>A new student has enrolled on the platform with active status.</p>
           <ul>
             <li><strong>Name:</strong> ${newUserName}</li>
             <li><strong>Email:</strong> ${newUserEmail}</li>
             <li><strong>Course:</strong> ${courseId}</li>
           </ul>
-          <p>Please log in to the admin dashboard to review and approve their admission.</p>
         </div>
       `,
     });

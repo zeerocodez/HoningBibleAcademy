@@ -64,6 +64,21 @@ export const authOptions: NextAuthOptions = {
           where: { id: user.id },
           data: { role: 'ADMIN' }
         }).catch(console.error);
+      } else {
+        await prisma.enrollment.upsert({
+          where: {
+            userId_courseId: {
+              userId: user.id,
+              courseId: 'cert-biblical-studies'
+            }
+          },
+          update: { status: 'ACTIVE' },
+          create: {
+            userId: user.id,
+            courseId: 'cert-biblical-studies',
+            status: 'ACTIVE'
+          }
+        }).catch(console.error);
       }
     }
   },
@@ -87,10 +102,22 @@ export const authOptions: NextAuthOptions = {
           where: { email: token.email, role: { not: 'ADMIN' } },
           data: { role: 'ADMIN' }
         }).catch(console.error);
-      } else if (!user && token.email) {
-        const dbUser = await prisma.user.findUnique({ where: { email: token.email }});
+      } else if (token.email) {
+        const dbUser = await prisma.user.findUnique({ 
+          where: { email: token.email },
+          include: { enrollments: true }
+        });
         if (dbUser) {
           token.role = dbUser.role;
+          if (dbUser.role !== 'ADMIN' && dbUser.enrollments.length === 0) {
+            await prisma.enrollment.create({
+              data: {
+                userId: dbUser.id,
+                courseId: 'cert-biblical-studies',
+                status: 'ACTIVE'
+              }
+            }).catch(console.error);
+          }
         }
       }
       return token;

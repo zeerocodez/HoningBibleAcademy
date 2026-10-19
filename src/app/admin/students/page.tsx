@@ -1,10 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../page.module.css';
+import { getStudents } from '../actions';
 
 export default function AdminStudents() {
-  const [students] = useState<any[]>([]);
+  const [students, setStudents] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getStudents()
+      .then(setStudents)
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <div>
@@ -19,26 +28,35 @@ export default function AdminStudents() {
               <th>Email</th>
               <th>Joined Date</th>
               <th>Enrollments</th>
-              <th>Actions</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            {students.length === 0 ? (
+            {loading ? (
               <tr>
-                <td colSpan={5} style={{ textAlign: 'center', padding: '1rem' }}>No students registered yet.</td>
+                <td colSpan={5} style={{ textAlign: 'center', padding: '1.5rem' }}>Loading students...</td>
+              </tr>
+            ) : students.length === 0 ? (
+              <tr>
+                <td colSpan={5} style={{ textAlign: 'center', padding: '1.5rem' }}>No students registered yet.</td>
               </tr>
             ) : (
-              students.map(student => (
-                <tr key={student.id}>
-                  <td>{student.name || 'N/A'}</td>
-                  <td>{student.email}</td>
-                  <td>{new Date(student.createdAt).toLocaleDateString()}</td>
-                  <td>{student.enrollments?.length || 0} Course(s)</td>
-                  <td>
-                    <button className={styles.actionBtn} style={{ marginRight: '0.5rem', padding: '0.3rem 0.6rem', border: 'none', background: '#3b82f6', color: 'white', borderRadius: '4px', cursor: 'pointer' }}>View</button>
-                  </td>
-                </tr>
-              ))
+              students.map(student => {
+                const hasActive = student.enrollments?.some((e: any) => e.status === 'ACTIVE');
+                return (
+                  <tr key={student.id}>
+                    <td>{student.name || 'N/A'}</td>
+                    <td>{student.email}</td>
+                    <td>{new Date(student.createdAt).toLocaleDateString()}</td>
+                    <td>{student.enrollments?.length || 0} Course(s)</td>
+                    <td>
+                      <span className={hasActive ? styles.badgeSuccess : styles.badgePending}>
+                        {hasActive ? 'Enrolled' : (student.enrollments?.length > 0 ? 'Pending' : 'Not Enrolled')}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })
             )}
           </tbody>
         </table>
@@ -46,4 +64,3 @@ export default function AdminStudents() {
     </div>
   );
 }
-
