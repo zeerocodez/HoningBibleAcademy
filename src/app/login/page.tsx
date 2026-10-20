@@ -23,13 +23,20 @@ function LoginContent() {
     switch (code) {
       case 'OAuthSignin':
       case 'OAuthCallback':
-        return 'Could not authenticate with Google. If this persists, please ensure the Google Cloud OAuth redirect URIs match your domain, or sign in below with email and password.';
+      case 'Callback':
+        return 'Could not authenticate with Google. If you are using Google Sign-In, please sign in below with your email and password, or verify that the Google OAuth credentials match the domain.';
       case 'OAuthAccountNotLinked':
         return 'An account already exists with this email address using a different sign-in method. Please enter your email and password below.';
+      case 'OAuthCreateAccount':
+        return 'Could not automatically create your account via Google. Please enter your email and password below to sign in or enroll.';
+      case 'AccessDenied':
+        return 'Access was denied. Please ensure you have permission or try signing in with your email and password.';
+      case 'Configuration':
+        return 'There is a server configuration issue with authentication. Please try signing in with email/password or contact support.';
       case 'CredentialsSignin':
-        return 'Invalid email or password.';
+        return 'Invalid email or password. Please check your credentials and try again.';
       default:
-        return 'Authentication failed. Please try again.';
+        return `Authentication failed (${code}). Please try again or sign in with your email and password below.`;
     }
   };
 

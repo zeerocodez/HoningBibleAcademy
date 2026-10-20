@@ -93,6 +93,14 @@ export const authOptions: NextAuthOptions = {
     signIn: '/login',
   },
   debug: process.env.NODE_ENV === "development",
+  logger: {
+    error(code, metadata) {
+      console.error('[NextAuth Error]', code, metadata);
+    },
+    warn(code) {
+      console.warn('[NextAuth Warn]', code);
+    },
+  },
   session: {
     strategy: "jwt",
   },
@@ -103,28 +111,34 @@ export const authOptions: NextAuthOptions = {
         token.id = user.id;
       }
       
-      if (token.email && isAdminEmail(token.email)) {
-        token.role = 'ADMIN';
-        await prisma.user.updateMany({
-          where: { email: token.email, role: { not: 'ADMIN' } },
-          data: { role: 'ADMIN' }
-        }).catch(console.error);
-      } else if (token.email) {
-        const dbUser = await prisma.user.findUnique({ 
-          where: { email: token.email },
-          include: { enrollments: true }
-        });
-        if (dbUser) {
-          token.role = dbUser.role;
-          if (dbUser.role !== 'ADMIN' && dbUser.enrollments.length === 0) {
-            await prisma.enrollment.create({
-              data: {
-                userId: dbUser.id,
-                courseId: 'cert-biblical-studies',
-                status: 'ACTIVE'
-              }
+      if (token.email) {
+        try {
+          if (isAdminEmail(token.email)) {
+            token.role = 'ADMIN';
+            await prisma.user.updateMany({
+              where: { email: token.email, role: { not: 'ADMIN' } },
+              data: { role: 'ADMIN' }
             }).catch(console.error);
+          } else {
+            const dbUser = await prisma.user.findUnique({ 
+              where: { email: token.email },
+              include: { enrollments: true }
+            });
+            if (dbUser) {
+              token.role = dbUser.role;
+              if (dbUser.role !== 'ADMIN' && dbUser.enrollments.length === 0) {
+                await prisma.enrollment.create({
+                  data: {
+                    userId: dbUser.id,
+                    courseId: 'cert-biblical-studies',
+                    status: 'ACTIVE'
+                  }
+                }).catch(console.error);
+              }
+            }
           }
+        } catch (dbErr) {
+          console.error('[NextAuth JWT] Error fetching user metadata from db:', dbErr);
         }
       }
       return token;

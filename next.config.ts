@@ -15,6 +15,16 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.honingbibleacademy.org.ng' }],
+        destination: 'https://honingbibleacademy.org.ng/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
